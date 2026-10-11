@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>買櫝還珠・韓非子互動學習｜櫝珠學堂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/lxgw-wenkai-tc@latest/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/lxgw-wenkai-tc@latest/700.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-tc@latest/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-tc@latest/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-tc@latest/700.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-tc@latest/900.css">
+<style>
+:root{
+  --paper:#faf3e2; --paper2:#f4e9d0; --paper3:#efe1c1;
+  --card:#fffdf4;
+  --ink:#33291d; --ink-soft:#6f5f4a;
+  --red:#b23a2f; --red-deep:#8c2a21; --red-soft:#e0604d;
+  --gold:#b98a3e; --gold-deep:#8f6a2a; --gold-soft:#e9cf98;
+  --jade:#3e7c5f; --azure:#41708f;
+  --line:#e2d1a8;
+  --font-d:'LXGW WenKai TC','Noto Serif TC',serif;
+  --font-b:'Noto Serif TC',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-b); color:var(--ink); line-height:1.85;
+  background:var(--paper);
+  background-image:radial-gradient(rgba(139,106,42,.05) 1px,transparent 1.6px);
+  background-size:26px 26px;
+}
+section{scroll-margin-top:86px}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+/* ===== 回紋邊條 ===== */
+.meander{height:9px;background:
+  repeating-linear-gradient(90deg,var(--red) 0 16px,var(--gold) 16px 19px,var(--red-deep) 19px 35px,var(--gold) 35px 38px);}
+
+/* ===== 頂欄 ===== */
+.topbar{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
+  padding:10px clamp(14px,4vw,42px);
+  background:rgba(250,243,226,.93);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--gold-soft);
+}
+.brand{display:flex;align-items:center;gap:12px;flex:none}
+.brand-seal{
+  width:46px;height:46px;background:var(--red);color:#fdf3dd;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-d);font-size:17px;line-height:1.15;text-align:center;
+  writing-mode:vertical-rl;letter-spacing:.15em;
+  box-shadow:0 3px 10px rgba(140,42,33,.35),inset 0 0 0 2px rgba(253,243,221,.5);
+  transform:rotate(-3deg);flex:none;
+}
+.brand h1{font-family:var(--font-d);font-size:22px;line-height:1.15;color:var(--red-deep)}
+.brand p{font-size:11px;color:var(--ink-soft);letter-spacing:.12em}
+#nav{margin-left:auto;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+#nav::-webkit-scrollbar{display:none}
+#nav a{
+  flex:none;padding:8px 13px;font-size:15px;color:var(--ink-soft);
+  position:relative;border-radius:6px;transition:color .25s;white-space:nowrap;
+}
+#nav a::after{
+  content:"";position:absolute;left:14%;right:14%;bottom:3px;height:3px;border-radius:3px;
+  background:linear-gradient(90deg,var(--red),var(--gold));
+  transform:scaleX(0);transform-origin:center;transition:transform .3s;
+}
+#nav a:hover,#nav a.active{color:var(--red-deep)}
+#nav a.active::after,#nav a:hover::after{transform:scaleX(1)}
+
+/* ===== 通用 ===== */
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,36px)}
+.sec{padding:72px 0 20px}
+.sec-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.sec-seal{
+  width:52px;height:52px;flex:none;background:var(--red);color:#fdf3dd;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:26px;
+  transform:rotate(-4deg);box-shadow:0 4px 12px rgba(140,42,33,.3),inset 0 0 0 2px rgba(253,243,221,.45);
+}
+.sec-head h2{font-family:var(--font-d);font-size:clamp(26px,4vw,36px);color:var(--ink);letter-spacing:.06em}
+.sec-sub{width:100%;color:var(--gold-deep);font-size:14px;letter-spacing:.24em;margin-top:-4px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  box-shadow:0 8px 24px rgba(112,84,40,.09);
+}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.cloud-div{display:flex;justify-content:center;padding:44px 0 8px;opacity:.75}
+
+/* ===== Hero ===== */
+.hero{position:relative;overflow:hidden;padding:64px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,64px);align-items:center}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;background:#f6e7c6;border:1px solid var(--gold-soft);
+  color:var(--gold-deep);border-radius:999px;padding:5px 16px;font-size:13px;letter-spacing:.18em;margin-bottom:20px;
+}
+.kicker::before{content:"";width:8px;height:8px;background:var(--red);border-radius:2px;transform:rotate(45deg)}
+.hero h2{
+  font-family:var(--font-d);font-size:clamp(56px,9vw,104px);line-height:1.08;
+  letter-spacing:.08em;color:var(--ink);text-shadow:0 2px 0 rgba(255,255,255,.6);
+}
+.hero h2 .hl{color:var(--red)}
+.hero-quote{
+  font-family:var(--font-d);font-size:clamp(17px,2.2vw,21px);color:var(--ink-soft);
+  margin:18px 0 8px;letter-spacing:.1em;
+}
+.hero-quote b{color:var(--red-deep);font-weight:400}
+.hero-desc{color:var(--ink-soft);font-size:15px;max-width:34em;margin-bottom:26px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;border-radius:8px;
+  padding:11px 26px;font-size:16px;letter-spacing:.12em;transition:all .25s;border:1px solid transparent;
+}
+.btn.solid{background:var(--red);color:#fdf3dd;border-color:var(--red-deep);box-shadow:0 4px 14px rgba(140,42,33,.32)}
+.btn.solid:hover{background:var(--red-deep);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--red-deep);border-color:var(--red)}
+.btn.ghost:hover{background:#f7e4dc;transform:translateY(-2px)}
+.hero-facts{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+.fact{
+  background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--ink-soft);
+}
+.fact b{display:block;color:var(--red-deep);font-family:var(--font-d);font-size:16px}
+.hero-art{position:relative}
+.art-frame{
+  background:#fdf8ea;border:1px solid var(--gold);outline:6px solid #f7efd9;
+  box-shadow:0 0 0 7px var(--gold-soft),0 18px 40px rgba(112,84,40,.18);
+  border-radius:6px;padding:10px;position:relative;
+}
+.art-frame::after{
+  content:"櫝珠";position:absolute;right:-16px;bottom:24px;background:var(--red);color:#fdf3dd;
+  font-family:var(--font-d);writing-mode:vertical-rl;letter-spacing:.2em;font-size:19px;
+  padding:12px 7px;border-radius:4px;box-shadow:0 4px 12px rgba(140,42,33,.4);transform:rotate(2deg);
+}
+.hero-strip{
+  position:absolute;left:-10px;top:8%;background:var(--red);color:#fdf3dd;
+  writing-mode:vertical-rl;letter-spacing:.35em;font-family:var(--font-d);
+  padding:18px 8px;font-size:15px;border-radius:4px;box-shadow:0 6px 16px rgba(140,42,33,.35);z-index:2;
+}
+.hero-art{animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.scroll-hint{margin-top:44px;text-align:center;color:var(--gold-deep);font-size:13px;letter-spacing:.4em;animation:hint 2.2s ease-in-out infinite}
+@keyframes hint{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(7px);opacity:1}}
+
+/* ===== 作者 ===== */
+.author-grid{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start}
+.portrait{position:relative;text-align:center;padding:16px 16px 0}
+.portrait svg{border-radius:8px}
+.portrait-plate{
+  margin:14px -16px;background:var(--red);color:#fdf3dd;font-family:var(--font-d);
+  padding:10px;font-size:19px;letter-spacing:.4em;border-radius:0 0 10px 10px;
+}
+.bio{padding:26px clamp(18px,3vw,32px)}
+.bio p{margin-bottom:14px;font-size:15.5px}
+.bio .drop::first-letter{font-family:var(--font-d);font-size:2.1em;color:var(--red);float:left;line-height:1;margin:4px 8px 0 0}
+.info-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0 6px}
+.info-list div{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--ink-soft)}
+.info-list b{display:block;color:var(--ink);font-family:var(--font-d);font-size:15px}
+.shi-quote{
+  border-left:4px solid var(--red);background:#f8ecd8;border-radius:0 10px 10px 0;
+  padding:14px 18px;margin-top:16px;font-family:var(--font-d);font-size:17px;color:var(--red-deep);
+}
+.shi-quote small{display:block;font-family:var(--font-b);font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+.tl{margin:26px 0;padding:22px clamp(18px,3vw,30px)}
+.tl-title{font-family:var(--font-d);font-size:20px;color:var(--red-deep);margin-bottom:14px;letter-spacing:.12em}
+.tl-item{position:relative;padding:0 0 20px 26px;border-left:2px solid var(--gold-soft)}
+.tl-item:last-child{padding-bottom:2px}
+.tl-item::before{content:"";position:absolute;left:-7px;top:5px;width:12px;height:12px;background:var(--red);border-radius:3px;transform:rotate(45deg);box-shadow:0 0 0 3px #f3ddc8}
+.tl-item b{font-family:var(--font-d);color:var(--red-deep);font-size:16.5px;margin-right:10px}
+.tl-item span{color:var(--ink-soft);font-size:14.5px}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:#f6e7c6;border:1px solid var(--gold-soft);border-radius:999px;padding:4px 14px;font-size:13px;color:var(--gold-deep)}
+
+/* ===== 法家 ===== */
+.lede{max-width:52em;font-size:15.5px;color:var(--ink-soft);margin-bottom:26px}
+.flip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:34px}
+.flip{perspective:1100px;height:262px;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
+.flip:hover .flip-inner,.flip.flipped .flip-inner{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;border:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;text-align:center;
+}
+.face.front{background:var(--card)}
+.face.front .big{font-family:var(--font-d);font-size:74px;color:var(--red);line-height:1}
+.face.front .big.j{color:var(--jade)} .face.front .big.s{color:var(--azure)}
+.face.front p{font-size:12.5px;color:var(--ink-soft);letter-spacing:.2em}
+.face.back{transform:rotateY(180deg);background:linear-gradient(160deg,#fdf6e5,#f6e7c6)}
+.face.back h4{font-family:var(--font-d);font-size:21px;color:var(--red-deep)}
+.face.back p{font-size:13.5px;color:var(--ink)}
+.face.back small{color:var(--gold-deep);font-size:12px}
+.flip-hint{text-align:center;color:var(--gold-deep);font-size:12.5px;letter-spacing:.25em;margin:-18px 0 30px}
+.fig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:30px}
+.fig{padding:18px 14px;text-align:center;transition:transform .25s,box-shadow .25s}
+.fig:hover{transform:translateY(-5px);box-shadow:0 14px 28px rgba(112,84,40,.16)}
+.fig .seal-mini{
+  width:52px;height:52px;margin:0 auto 10px;background:var(--paper2);border:2px solid var(--gold);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:23px;color:var(--red-deep);
+}
+.fig h4{font-family:var(--font-d);font-size:18px}
+.fig .era{font-size:12px;color:var(--gold-deep);letter-spacing:.1em;margin:2px 0 6px}
+.fig p{font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+.cmp-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-bottom:26px;font-size:14px}
+.cmp-table th{background:var(--red);color:#fdf3dd;font-family:var(--font-d);font-weight:400;padding:12px;letter-spacing:.15em}
+.cmp-table td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
+.cmp-table td:first-child{font-family:var(--font-d);color:var(--red-deep);width:120px;background:#fbf3df}
+.cmp-table tr:nth-child(even) td:not(:first-child){background:#fdfaf0}
+.impact{
+  background:linear-gradient(120deg,#8c2a21,#b23a2f);color:#fbeedd;border-radius:14px;
+  padding:24px clamp(18px,3vw,34px);margin-bottom:20px;position:relative;overflow:hidden;
+}
+.impact::after{content:"法";position:absolute;right:-18px;bottom:-46px;font-family:var(--font-d);font-size:170px;color:rgba(253,243,221,.08);line-height:1}
+.impact h4{font-family:var(--font-d);font-size:21px;letter-spacing:.15em;margin-bottom:8px;color:#ffe9c4}
+.impact p{font-size:14.5px;max-width:56em}
+.impact .q{margin-top:12px;font-family:var(--font-d);color:#ffd98f;font-size:16px;letter-spacing:.1em}
+
+/* ===== 原文（橫排卷軸） ===== */
+.ctx{padding:20px clamp(18px,3vw,28px);margin-bottom:30px;border-left:5px solid var(--gold);background:#fbf4e0}
+.ctx h4{font-family:var(--font-d);color:var(--gold-deep);margin-bottom:6px;letter-spacing:.1em}
+.ctx p{font-size:14.5px;color:var(--ink-soft)}
+.scroll-v{margin-bottom:14px}
+.roller-h{
+  height:22px;background:linear-gradient(180deg,#7a4a26,#4e2c14 45%,#7a4a26);border-radius:11px;
+  box-shadow:0 6px 14px rgba(78,44,20,.35);position:relative;
+}
+.roller-h::before,.roller-h::after{
+  content:"";position:absolute;top:-4px;bottom:-4px;width:16px;border-radius:8px;
+  background:radial-gradient(circle at 50% 50%,#e9cf98,#b98a3e);box-shadow:0 3px 6px rgba(0,0,0,.25);
+}
+.roller-h::before{left:-8px}.roller-h::after{right:-8px}
+.scroll-body{
+  background:linear-gradient(180deg,#fdf8ea,#f8efd8);
+  border-left:3px solid var(--gold);border-right:3px solid var(--gold);
+  box-shadow:inset 0 0 50px rgba(185,138,62,.15);
+  padding:38px clamp(22px,6vw,64px);
+}
+.v-title-h{
+  text-align:center;font-family:var(--font-d);color:var(--red-deep);font-size:15px;
+  letter-spacing:.35em;margin-bottom:20px;opacity:.85;
+}
+.v-main-h{
+  font-family:var(--font-d);font-size:clamp(21px,3.2vw,30px);letter-spacing:.12em;
+  line-height:2.5;color:var(--ink);text-align:justify;
+}
+.anno{border-bottom:3px dotted var(--red);cursor:pointer;transition:color .2s}
+.anno:hover{color:var(--red)}
+.anno.flash{animation:aflash 1.2s ease;border-radius:4px}
+@keyframes aflash{0%,60%{background:#f6d98a;color:#7a4a06}100%{background:transparent}}
+.scroll-cap{text-align:center;font-size:13px;color:var(--gold-deep);letter-spacing:.2em;margin-bottom:30px}
+.note-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:13px;margin-bottom:26px}
+.note-card{
+  background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);
+  border-radius:9px;padding:12px 15px;cursor:pointer;transition:all .25s;
+}
+.note-card:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(112,84,40,.15)}
+.note-card.flash{border-left-color:var(--red);background:#fbeedd;animation:cpulse 1.2s ease}
+@keyframes cpulse{0%{transform:scale(1.03)}100%{transform:scale(1)}}
+.note-card .term{font-family:var(--font-d);font-size:20px;color:var(--red-deep)}
+.note-card .term i{font-style:normal;font-size:12.5px;color:var(--gold-deep);margin-left:8px;letter-spacing:.05em}
+.note-card p{font-size:13.5px;color:var(--ink-soft);margin-top:3px}
+.zyin{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+.zyin span{background:#f6e7c6;border:1px dashed var(--gold);border-radius:999px;padding:6px 16px;font-family:var(--font-d);font-size:15px}
+.zyin b{color:var(--red);font-size:19px;margin-right:8px}
+.zyin i{font-style:normal;color:var(--gold-deep);font-size:13px}
+.qc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.qc{padding:16px;text-align:center;position:relative}
+.qc .tag{position:absolute;top:-12px;left:14px;background:var(--red);color:#fdf3dd;font-family:var(--font-d);font-size:14px;padding:2px 12px;border-radius:999px;letter-spacing:.2em}
+.qc .tag.j{background:var(--jade)}.qc .tag.s{background:var(--azure)}.qc .tag.g{background:var(--gold-deep)}
+.qc h5{font-family:var(--font-d);font-size:16px;color:var(--ink);margin:8px 0 5px}
+.qc p{font-size:12.8px;color:var(--ink-soft)}
+
+/* ===== 朗讀 ===== */
+.player{padding:24px clamp(18px,3vw,32px);margin-bottom:14px}
+.player-ctl{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.pbtn{
+  width:60px;height:60px;border-radius:50%;border:2px solid var(--red-deep);background:var(--red);color:#fdf3dd;
+  font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 14px rgba(140,42,33,.35);
+  transition:all .2s;
+}
+.pbtn:hover{transform:scale(1.07);background:var(--red-deep)}
+.pbtn.small{width:46px;height:46px;font-size:15px;background:var(--card);color:var(--red-deep);border-color:var(--gold)}
+.pbtn.small:hover{background:#f6e7c6}
+.rate-box,.voice-box{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-soft)}
+.rate-box input{accent-color:var(--red);width:130px}
+.voice-box select{
+  font-family:var(--font-b);font-size:13px;color:var(--ink);background:#fbf5e6;
+  border:1px solid var(--gold);border-radius:8px;padding:7px 10px;max-width:260px;
+}
+#status{width:100%;font-size:13.5px;color:var(--gold-deep);letter-spacing:.05em;min-height:24px}
+.strip{
+  display:flex;flex-wrap:wrap;gap:3px;background:#fbf4e0;border:1px solid var(--line);border-radius:10px;
+  padding:18px;font-family:var(--font-d);font-size:clamp(19px,2.4vw,25px);line-height:2;
+}
+.strip span{padding:1px 3px;border-radius:5px;transition:background .15s,color .15s}
+.strip span.on{background:var(--gold);color:#fff8e8;box-shadow:0 2px 6px rgba(185,138,62,.5)}
+.player-note{font-size:12.5px;color:var(--ink-soft);margin:10px 4px 0;line-height:1.9}
+
+/* ===== 語譯 ===== */
+.trans-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch;margin-bottom:26px}
+.scene-card{padding:14px;display:flex;flex-direction:column}
+.scene-card svg{border-radius:8px;flex:1}
+.scene-card figcaption{text-align:center;font-size:13px;color:var(--gold-deep);letter-spacing:.2em;padding-top:10px;font-family:var(--font-d)}
+.baihua{padding:24px clamp(18px,3vw,28px)}
+.baihua h4{font-family:var(--font-d);color:var(--red-deep);letter-spacing:.15em;margin-bottom:10px}
+.baihua p{font-size:15px;background:#fbf4e0;border-radius:8px;padding:14px 16px;border:1px dashed var(--gold-soft)}
+.pair-tools{display:flex;gap:10px;margin-bottom:14px}
+.tool-btn{border:1px solid var(--gold);background:#f6e7c6;color:var(--gold-deep);border-radius:8px;padding:6px 16px;font-size:13px;letter-spacing:.1em;transition:all .2s}
+.tool-btn:hover{background:var(--gold);color:#fff8e8}
+.pair{margin-bottom:12px;overflow:hidden;transition:box-shadow .25s}
+.pair:hover{box-shadow:0 10px 24px rgba(112,84,40,.14)}
+.pair-orig{padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pair-orig .zh{font-family:var(--font-d);font-size:clamp(17px,2.2vw,20px);color:var(--ink);letter-spacing:.05em}
+.pair-orig .hint{flex:none;font-size:11.5px;color:var(--gold-deep);border:1px solid var(--gold-soft);border-radius:999px;padding:2px 10px;letter-spacing:.15em;transition:all .25s}
+.pair.open .pair-orig .hint{background:var(--red);color:#fdf3dd;border-color:var(--red)}
+.pair-trans{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.pair.open .pair-trans{max-height:280px}
+.pair-trans p{margin:0 20px 18px;padding:12px 16px;background:#f2eadb;border-left:4px solid var(--jade);border-radius:0 8px 8px 0;font-size:14px;color:var(--ink-soft)}
+.ext{padding:22px clamp(18px,3vw,28px)}
+.ext h4{font-family:var(--font-d);color:var(--red-deep);letter-spacing:.12em;margin-bottom:10px}
+.ext .anc{font-family:var(--font-d);font-size:16.5px;color:var(--ink);background:#fbf4e0;border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:12px;line-height:2.1}
+.ext .bai p{font-size:13.8px;color:var(--ink-soft)}
+
+/* ===== 賞析 ===== */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px}
+.feat{padding:22px;transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden}
+.feat:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(112,84,40,.16)}
+.feat .num{position:absolute;right:10px;top:2px;font-family:var(--font-d);font-size:58px;color:rgba(185,138,62,.18)}
+.feat h4{font-family:var(--font-d);font-size:19px;color:var(--red-deep);margin-bottom:8px}
+.feat p{font-size:13.8px;color:var(--ink-soft)}
+.feat .ex{display:block;margin-top:10px;font-size:12.8px;color:var(--gold-deep);background:#f6e7c6;border-radius:6px;padding:6px 10px}
+.theme{display:grid;grid-template-columns:1fr 1.4fr;gap:0;margin-bottom:26px;overflow:hidden}
+.theme-l{background:linear-gradient(160deg,#8c2a21,#b23a2f);color:#fbeedd;padding:26px;display:flex;flex-direction:column;justify-content:center}
+.theme-l .big{font-family:var(--font-d);font-size:clamp(30px,4vw,42px);letter-spacing:.14em;color:#ffe9c4;line-height:1.35}
+.theme-l small{margin-top:10px;color:rgba(251,238,221,.85);font-size:13px}
+.theme-r{padding:22px clamp(18px,3vw,28px)}
+.theme-r li{list-style:none;padding:10px 0 10px 30px;position:relative;font-size:14px;border-bottom:1px dashed var(--line)}
+.theme-r li:last-child{border-bottom:none}
+.theme-r li::before{content:"◆";position:absolute;left:6px;color:var(--gold);font-size:13px}
+.theme-r b{color:var(--red-deep);font-family:var(--font-d)}
+.idiom{display:grid;grid-template-columns:230px 1fr;overflow:hidden;margin-bottom:26px}
+.idiom-l{background:#f6e7c6;padding:26px 20px;text-align:center;border-right:1px solid var(--line)}
+.idiom-l h4{font-family:var(--font-d);font-size:29px;color:var(--red-deep);letter-spacing:.1em}
+.idiom-l .zy{font-size:12.5px;color:var(--gold-deep);margin-top:6px;letter-spacing:.06em}
+.idiom-l .src{margin-top:16px;font-size:12px;color:var(--ink-soft);border-top:1px dashed var(--gold);padding-top:12px}
+.idiom-r{padding:22px clamp(18px,3vw,28px);display:grid;grid-template-columns:1fr 1fr;gap:8px 26px;font-size:14px}
+.idiom-r div b{color:var(--red-deep);font-family:var(--font-d);margin-right:8px}
+.idiom-r .full{grid-column:1/-1}
+.think{padding:22px clamp(18px,3vw,28px)}
+.think h4{font-family:var(--font-d);color:var(--red-deep);letter-spacing:.12em;margin-bottom:10px}
+.think ol{padding-left:24px}
+.think li{margin-bottom:8px;font-size:14.5px;color:var(--ink-soft)}
+.think li::marker{color:var(--gold);font-family:var(--font-d)}
+
+/* ===== 論辯推演 ===== */
+.chain-card{padding:26px clamp(18px,3vw,34px);margin-bottom:26px}
+.chain-card h4,.sort-card h4,.debate-head{font-family:var(--font-d);color:var(--red-deep);letter-spacing:.12em;margin-bottom:14px;font-size:19px}
+.chain-lede{font-size:14px;color:var(--ink-soft);margin-bottom:20px;max-width:56em}
+.chain-steps{max-width:760px;margin:0 auto}
+.chain-step{display:flex;gap:14px;align-items:flex-start;opacity:.22;filter:grayscale(1);transition:all .55s ease;transform:translateY(6px)}
+.chain-step.lit{opacity:1;filter:none;transform:none}
+.step-tag{flex:none;min-width:66px;text-align:center;font-family:var(--font-d);font-size:14px;color:#fdf3dd;background:var(--gold-deep);border-radius:6px;padding:4px 8px;letter-spacing:.12em;margin-top:3px}
+.step-tag.t1{background:var(--red)} .step-tag.t2{background:var(--azure)} .step-tag.t3{background:var(--jade)}
+.step-tag.t4{background:#8a5a33} .step-tag.t5{background:#7a5aa0} .step-tag.t6{background:var(--red-deep)}
+.step-body h5{font-family:var(--font-d);font-size:17px;color:var(--ink)}
+.step-body p{font-size:13.8px;color:var(--ink-soft)}
+.chain-arrow{text-align:center;color:var(--gold);font-size:17px;line-height:1;opacity:.2;transition:opacity .5s;padding:6px 0}
+.chain-arrow.lit{opacity:1}
+.chain-ctl{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:22px;flex-wrap:wrap}
+#chainProg{font-size:13px;color:var(--gold-deep);letter-spacing:.1em}
+.chain-btn{border:1px solid var(--gold);background:#f6e7c6;color:var(--gold-deep);border-radius:8px;padding:8px 20px;font-size:14px;letter-spacing:.1em;transition:all .2s}
+.chain-btn:hover:not(:disabled){background:var(--gold);color:#fff8e8}
+.chain-btn:disabled{opacity:.4;cursor:default}
+.chain-btn.main{background:var(--red);border-color:var(--red-deep);color:#fdf3dd}
+.chain-btn.main:hover:not(:disabled){background:var(--red-deep);color:#fdf3dd}
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:30px}
+.method{padding:18px;text-align:center;transition:transform .25s,box-shadow .25s}
+.method:hover{transform:translateY(-5px);box-shadow:0 14px 28px rgba(112,84,40,.16)}
+.method .m-seal{width:44px;height:44px;margin:0 auto 10px;border-radius:50%;background:var(--paper2);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:20px;color:var(--red-deep)}
+.method h5{font-family:var(--font-d);color:var(--red-deep);font-size:17px;margin-bottom:6px}
+.method p{font-size:12.8px;color:var(--ink-soft)}
+.sort-card{padding:26px clamp(18px,3vw,34px);margin-bottom:26px}
+.sort-board{display:grid;grid-template-columns:1.1fr .9fr;gap:26px}
+.sort-col h5{font-size:13px;color:var(--gold-deep);letter-spacing:.2em;margin-bottom:12px;font-family:var(--font-d)}
+.sort-slots{display:grid;gap:9px}
+.sort-slot{min-height:52px;border:2px dashed var(--gold-soft);border-radius:9px;display:flex;align-items:center;gap:10px;padding:8px 12px;background:#fdf9ee;font-size:13.5px;color:var(--ink-soft)}
+.sort-slot .idx{flex:none;width:26px;height:26px;border-radius:50%;background:#efe1c1;color:var(--gold-deep);font-family:var(--font-d);display:flex;align-items:center;justify-content:center;font-size:14px}
+.sort-slot.filled{border-style:solid;border-color:var(--jade);background:#eef5ee;color:var(--ink)}
+.sort-slot.filled .idx{background:var(--jade);color:#eef5ee}
+.sort-pool{display:flex;flex-wrap:wrap;gap:9px;align-content:flex-start}
+.sort-tile{background:#fbf5e6;border:1px solid var(--gold);border-radius:9px;padding:9px 14px;font-size:13.5px;color:var(--ink);cursor:pointer;transition:all .2s;user-select:none}
+.sort-tile:hover{background:#f6e7c6;transform:translateY(-2px);box-shadow:0 6px 12px rgba(112,84,40,.15)}
+.sort-tile.shake{animation:shake .4s;border-color:var(--red);background:#f8e3dd}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}
+.sort-msg{margin-top:16px;font-size:13.5px;color:var(--gold-deep);min-height:26px}
+.sort-msg.ok{color:var(--jade);font-family:var(--font-d);font-size:16px}
+.sort-msg.no{color:var(--red)}
+.debate-head{margin-bottom:14px}
+.debate-grid{display:grid;grid-template-columns:1fr 84px 1fr;gap:0;align-items:stretch;margin-bottom:16px}
+.side{padding:22px;border-radius:14px}
+.side.pro{background:linear-gradient(160deg,#fdf1e6,#f9e2cf);border:1px solid #e8c8a0}
+.side.con{background:linear-gradient(160deg,#e9f1f5,#dcebf1);border:1px solid #b9d3de}
+.side h5{font-family:var(--font-d);font-size:19px;margin-bottom:2px}
+.side.pro h5{color:var(--red-deep)} .side.con h5{color:var(--azure)}
+.side .claim{font-size:13px;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.05em}
+.side .who{display:inline-block;font-size:11.5px;border-radius:999px;padding:2px 12px;letter-spacing:.15em;margin-bottom:10px}
+.side.pro .who{background:var(--red);color:#fdf3dd}
+.side.con .who{background:var(--azure);color:#eef5f9}
+.side li{list-style:none;font-size:13.5px;color:var(--ink);padding:9px 0 9px 24px;position:relative;border-bottom:1px dashed rgba(143,106,42,.3)}
+.side li:last-child{border-bottom:none}
+.side.pro li::before{content:"◆";position:absolute;left:2px;color:var(--red);font-size:12px}
+.side.con li::before{content:"◆";position:absolute;left:2px;color:var(--azure);font-size:12px}
+.vs-mid{display:flex;align-items:center;justify-content:center}
+.vs-seal{width:58px;height:58px;border-radius:50%;background:var(--red);color:#fdf3dd;font-family:var(--font-d);font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(140,42,33,.35);transform:rotate(-6deg)}
+.vote-box{text-align:center;padding:6px 0 4px}
+.vote-btns{display:flex;gap:12px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
+.vote-btn{border-radius:8px;padding:9px 24px;font-size:14.5px;letter-spacing:.1em;border:2px solid;transition:all .2s;background:#fff}
+.vote-btn.p{color:var(--red-deep);border-color:var(--red)} .vote-btn.p:hover:not(:disabled){background:var(--red);color:#fdf3dd}
+.vote-btn.c{color:var(--azure);border-color:var(--azure)} .vote-btn.c:hover:not(:disabled){background:var(--azure);color:#eef5f9}
+.vote-btn:disabled{opacity:.45;cursor:default}
+.vote-bar{height:26px;border-radius:99px;overflow:hidden;display:flex;background:#efe6cf;max-width:540px;margin:0 auto 8px;box-shadow:inset 0 1px 4px rgba(0,0,0,.14)}
+.vote-bar i{display:block;height:100%;transition:width .9s ease;width:0}
+.vote-bar .vp{background:linear-gradient(90deg,#c96a55,#b23a2f)}
+.vote-bar .vc{background:linear-gradient(90deg,#41708f,#6d9ab5)}
+.vote-labels{display:flex;justify-content:space-between;max-width:540px;margin:0 auto;font-size:12.5px;color:var(--ink-soft)}
+.verdict{display:none;margin-top:18px;font-size:13.8px;color:var(--ink-soft);background:#fbf4e0;border-radius:10px;padding:13px 18px;border:1px dashed var(--gold-soft);max-width:660px;margin-left:auto;margin-right:auto;animation:fadein .5s ease}
+.verdict.show{display:block}
+.verdict b{color:var(--red-deep);font-family:var(--font-d)}
+
+/* ===== 問答 ===== */
+.quiz{max-width:760px;margin:0 auto;padding:28px clamp(18px,3vw,36px)}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--ink-soft);margin-bottom:8px}
+.quiz-top b{color:var(--red-deep);font-family:var(--font-d);font-size:16px}
+.qbar{height:8px;background:#f0e2c2;border-radius:99px;overflow:hidden;margin-bottom:22px}
+.qbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--red));border-radius:99px;transition:width .45s ease}
+.qq{font-family:var(--font-d);font-size:clamp(18px,2.6vw,22px);margin-bottom:18px;line-height:1.7}
+.opts{display:grid;gap:11px}
+.opt{
+  display:flex;align-items:center;gap:14px;text-align:left;background:#fbf5e6;border:1px solid var(--line);
+  border-radius:10px;padding:13px 16px;font-size:15px;color:var(--ink);transition:all .22s;
+}
+.opt .letter{flex:none;width:32px;height:32px;border-radius:50%;background:#efe1c1;color:var(--gold-deep);font-family:var(--font-d);display:flex;align-items:center;justify-content:center;transition:all .22s}
+.opt:hover:not(:disabled){border-color:var(--gold);transform:translateX(4px);background:#fdf8ec}
+.opt:hover:not(:disabled) .letter{background:var(--gold);color:#fff8e8}
+.opt:disabled{cursor:default}
+.opt.right{background:#e4f0e6;border-color:var(--jade)}
+.opt.right .letter{background:var(--jade);color:#eef7f0}
+.opt.wrong{background:#f8e3dd;border-color:var(--red)}
+.opt.wrong .letter{background:var(--red);color:#fdeeea}
+.qexp{
+  display:none;margin-top:16px;background:#fbf4e0;border-left:4px solid var(--gold);border-radius:0 10px 10px 0;
+  padding:13px 16px;font-size:13.8px;color:var(--ink-soft);
+}
+.qexp.show{display:block;animation:fadein .4s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.qnext{margin-top:18px;display:none}
+.qnext.show{display:inline-flex;animation:fadein .4s ease}
+.result{text-align:center;padding:14px 0}
+.result .stamp{
+  width:130px;height:130px;margin:6px auto 18px;border:5px solid var(--red);border-radius:14px;color:var(--red);
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:26px;line-height:1.3;
+  transform:rotate(-8deg);padding:10px;animation:stampin .55s cubic-bezier(.2,1.6,.4,1);background:rgba(178,58,47,.05);
+  text-align:center;
+}
+@keyframes stampin{0%{transform:rotate(-8deg) scale(2.2);opacity:0}100%{transform:rotate(-8deg) scale(1);opacity:1}}
+.result .score{font-family:var(--font-d);font-size:44px;color:var(--ink)}
+.result .score b{color:var(--red)}
+.result p{color:var(--ink-soft);font-size:14.5px;margin:8px 0 20px}
+
+/* ===== 頁尾 / 其他 ===== */
+footer{margin-top:80px;background:#332a1e;color:#d9c9a8}
+footer .wrap{padding-top:38px;padding-bottom:30px;text-align:center}
+footer .f-seal{display:inline-flex;width:44px;height:44px;background:var(--red);color:#fdf3dd;border-radius:7px;align-items:center;justify-content:center;font-family:var(--font-d);writing-mode:vertical-rl;letter-spacing:.15em;margin-bottom:12px;transform:rotate(-3deg)}
+footer h3{font-family:var(--font-d);letter-spacing:.3em;font-weight:400;font-size:19px;color:#f0e2c2}
+footer p{font-size:12.5px;margin-top:10px;line-height:2}
+footer .f-line{width:120px;height:1px;background:var(--gold);margin:16px auto;opacity:.6}
+#toTop{
+  position:fixed;right:22px;bottom:26px;width:48px;height:48px;border-radius:50%;border:2px solid var(--red-deep);
+  background:var(--red);color:#fdf3dd;font-size:18px;z-index:60;box-shadow:0 6px 16px rgba(140,42,33,.4);
+  opacity:0;pointer-events:none;transition:all .3s;
+}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{transform:translateY(-4px)}
+
+/* ===== RWD ===== */
+@media (max-width:960px){
+  .hero .wrap,.author-grid,.trans-grid,.theme,.idiom{grid-template-columns:1fr}
+  .flip-grid,.feat-grid,.method-grid{grid-template-columns:1fr 1fr}
+  .qc-grid{grid-template-columns:1fr 1fr}
+  .hero-strip{display:none}
+  .debate-grid{grid-template-columns:1fr}
+  .vs-mid{padding:12px 0}
+  .sort-board{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .flip-grid,.feat-grid,.method-grid{grid-template-columns:1fr}
+  .idiom-r{grid-template-columns:1fr}
+  .brand p{display:none}
+  #nav a{padding:8px 9px;font-size:14px}
+  .theme-l .big{font-size:28px}
+  .scroll-body{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+
+<div class="meander"></div>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-seal">櫝珠</span>
+    <div>
+      <h1>櫝珠學堂</h1>
+      <p>韓非子〈買櫝還珠〉互動學習</p>
+    </div>
+  </div>
+  <nav id="nav">
+    <a href="#author">作者介紹</a>
+    <a href="#legal">法家介紹</a>
+    <a href="#text">文本註釋</a>
+    <a href="#read">朗讀</a>
+    <a href="#trans">白話語譯</a>
+    <a href="#apprec">賞析</a>
+    <a href="#debate">論辯推演</a>
+    <a href="#quiz">互動問答</a>
+  </nav>
+</header>
+
+<main>
+<!-- ============ 首頁 ============ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="reveal in">
+      <span class="kicker">《韓非子・外儲說左上》・戰國寓言</span>
+      <h2>買<span class="hl">櫝</span>還<span class="hl">珠</span></h2>
+      <p class="hero-quote">「此可謂善賣櫝矣，<b>未可謂善鬻珠也</b>。」</p>
+      <p class="hero-desc">一隻華美無比的盒子，一顆被遺忘的明珠。兩千三百年前，韓非子用這個市井小故事，道破了「形式與內容」的千古難題——取捨之間，你分得清什麼是「櫝」、什麼是「珠」嗎？</p>
+      <a class="btn solid" href="#text">開始學習 ▸</a>
+      <a class="btn ghost" href="#read" style="margin-left:10px">先聽朗讀 ♪</a>
+      <div class="hero-facts">
+        <div class="fact"><b>戰國末期</b>成書年代</div>
+        <div class="fact"><b>韓非</b>作者</div>
+        <div class="fact"><b>五十餘字</b>故事篇幅</div>
+        <div class="fact"><b>以文害用</b>核心論點</div>
+      </div>
+    </div>
+    <div class="hero-art reveal in">
+      <span class="hero-strip">戰國・韓非 著</span>
+      <div class="art-frame">
+        <!-- 插畫：木蘭之櫝與明珠 -->
+        <svg viewBox="0 0 640 520" role="img" aria-label="木蘭之櫝與明珠插畫">
+          <defs>
+            <radialGradient id="pearlG" cx="35%" cy="30%" r="80%">
+              <stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#f7eedd"/><stop offset="100%" stop-color="#d3bd92"/>
+            </radialGradient>
+            <radialGradient id="glowG" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffe9b8" stop-opacity=".9"/><stop offset="100%" stop-color="#ffe9b8" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="woodG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#9a6a3d"/><stop offset="1" stop-color="#6e4426"/>
+            </linearGradient>
+            <linearGradient id="lidG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#b3814d"/><stop offset="1" stop-color="#8a5a33"/>
+            </linearGradient>
+            <linearGradient id="silkG" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#f0c3ae"/><stop offset=".5" stop-color="#dd8a72"/><stop offset="1" stop-color="#c96a55"/>
+            </linearGradient>
+          </defs>
+          <rect width="640" height="520" fill="#fbf5e7"/>
+          <circle cx="528" cy="104" r="44" fill="#e0604d" opacity=".85"/>
+          <circle cx="528" cy="104" r="56" fill="none" stroke="#e0604d" stroke-width="2" opacity=".35"/>
+          <path d="M-20 330 Q120 240 260 300 Q380 348 660 268 L660 540 L-20 540 Z" fill="#ecd9ad" opacity=".55"/>
+          <path d="M-20 380 Q160 310 330 366 Q470 410 660 340 L660 540 L-20 540 Z" fill="#dfc48d" opacity=".5"/>
+          <g fill="none" stroke="#c1953f" stroke-width="4" stroke-linecap="round" opacity=".8">
+            <path d="M64 96 q-8 -30 26 -32 q6 -22 32 -16 q26 -10 36 14 q28 2 26 30 q-2 16 -26 16 l-78 0 q-16 -1 -16 -12"/>
+            <path d="M96 88 a12 12 0 1 1 22 -6" opacity=".6"/>
+          </g>
+          <g fill="none" stroke="#c1953f" stroke-width="3.5" stroke-linecap="round" opacity=".55" transform="translate(420,40) scale(.7)">
+            <path d="M64 96 q-8 -30 26 -32 q6 -22 32 -16 q26 -10 36 14 q28 2 26 30 q-2 16 -26 16 l-78 0 q-16 -1 -16 -12"/>
+          </g>
+          <path d="M30 436 Q180 392 330 428 Q480 462 620 416 L620 520 L30 520 Z" fill="url(#silkG)" opacity=".8"/>
+          <path d="M70 448 Q210 416 350 446 Q480 472 610 436" fill="none" stroke="#fdf3dd" stroke-width="3" opacity=".55"/>
+          <circle cx="468" cy="396" r="92" fill="url(#glowG)"/>
+          <ellipse cx="468" cy="458" rx="56" ry="12" fill="#8a5a33" opacity=".25"/>
+          <circle cx="468" cy="396" r="52" fill="url(#pearlG)" stroke="#cbb283" stroke-width="2"/>
+          <ellipse cx="450" cy="376" rx="14" ry="9" fill="#ffffff" opacity=".9" transform="rotate(-24 450 376)"/>
+          <g transform="translate(120,232)">
+            <ellipse cx="130" cy="228" rx="150" ry="16" fill="#8a5a33" opacity=".22"/>
+            <path d="M0 78 L46 18 L266 18 L220 78 Z" fill="url(#lidG)" stroke="#5c3a1e" stroke-width="2"/>
+            <path d="M0 78 L220 78 L220 208 Q220 220 206 220 L14 220 Q0 220 0 208 Z" fill="url(#woodG)" stroke="#5c3a1e" stroke-width="2"/>
+            <path d="M220 78 L266 18 L266 148 L220 208 Z" fill="#5f3a20" stroke="#4e2c14" stroke-width="2"/>
+            <path d="M0 78 L220 78" stroke="#e9cf98" stroke-width="3"/>
+            <path d="M10 90 L210 90 L210 208 L10 208 Z" fill="none" stroke="#e9cf98" stroke-width="2.5" opacity=".85"/>
+            <circle cx="110" cy="150" r="21" fill="#e9cf98" opacity=".9"/>
+            <circle cx="110" cy="150" r="13" fill="#3e7c5f"/>
+            <circle cx="110" cy="150" r="5" fill="#a8d3bd"/>
+            <circle cx="40" cy="120" r="6" fill="#f6ead2"/><circle cx="180" cy="120" r="6" fill="#f6ead2"/>
+            <circle cx="40" cy="184" r="6" fill="#f6ead2"/><circle cx="180" cy="184" r="6" fill="#f6ead2"/>
+            <g transform="translate(150,34) rotate(8)">
+              <path d="M0 0 Q26 -16 52 0 Q26 10 0 0 Z" fill="#3fa08a" opacity=".9"/>
+              <path d="M8 2 Q26 -10 44 2" stroke="#1f6b5a" stroke-width="1.6" fill="none"/>
+            </g>
+            <circle cx="80" cy="46" r="7" fill="#f6ead2"/><circle cx="104" cy="40" r="6" fill="#f6ead2"/><circle cx="126" cy="46" r="5" fill="#f6ead2"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <p class="scroll-hint">▼ 向下探索 ▼</p>
+</section>
+
+<!-- ============ 作者介紹 ============ -->
+<section class="sec" id="author">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-seal">壹</span>
+      <h2>作者介紹：韓非子</h2>
+      <span class="sec-sub">戰國末期・法家思想的集大成者</span>
+    </div>
+    <div class="author-grid">
+      <figure class="card portrait reveal">
+        <svg viewBox="0 0 420 470" role="img" aria-label="韓非子畫像">
+          <defs>
+            <radialGradient id="moonG" cx="50%" cy="42%" r="70%">
+              <stop offset="0%" stop-color="#fdf8ea"/><stop offset="100%" stop-color="#f1e3c2"/>
+            </radialGradient>
+          </defs>
+          <rect width="420" height="470" fill="#f8f0dc"/>
+          <circle cx="210" cy="220" r="176" fill="url(#moonG)" stroke="#b98a3e" stroke-width="2.5"/>
+          <path d="M60 300 Q130 244 200 292 Q280 344 366 276" fill="none" stroke="#c9a860" stroke-width="5" opacity=".5"/>
+          <path d="M96 322 Q170 276 240 316 Q300 350 352 310" fill="none" stroke="#c9a860" stroke-width="4" opacity=".32"/>
+          <g stroke="#3e7c5f" stroke-width="5" stroke-linecap="round" opacity=".85">
+            <path d="M330 96 L322 240"/><path d="M344 120 L340 250"/>
+          </g>
+          <g fill="#4f9271" opacity=".9">
+            <path d="M322 130 q-34 -8 -52 14 q30 10 52 -14 Z"/>
+            <path d="M330 172 q-38 -4 -58 20 q32 8 58 -20 Z"/>
+            <path d="M342 148 q30 -18 54 -8 q-22 20 -54 8 Z"/>
+          </g>
+          <g>
+            <path d="M210 168 q-64 10 -84 84 q-16 58 -18 108 l204 0 q-2 -50 -18 -108 q-20 -74 -84 -84 Z" fill="#41506b"/>
+            <path d="M210 172 q-40 12 -52 60 l52 34 52 -34 q-12 -48 -52 -60 Z" fill="#33415c"/>
+            <path d="M158 232 q-42 22 -40 66 q26 14 52 4 l18 -40 Z" fill="#4a5b79"/>
+            <path d="M262 232 q42 22 40 66 q-26 14 -52 4 l-18 -40 Z" fill="#4a5b79"/>
+            <path d="M128 296 q82 34 164 0 l-8 34 q-74 26 -148 0 Z" fill="#f0e3c8"/>
+            <g transform="translate(210,300)">
+              <rect x="-72" y="-16" width="144" height="30" rx="6" fill="#d9b06a" stroke="#a97f3c" stroke-width="2"/>
+              <g stroke="#a97f3c" stroke-width="1.6"><path d="M-54 -14 v26"/><path d="M-36 -14 v26"/><path d="M-18 -14 v26"/><path d="M0 -14 v26"/><path d="M18 -14 v26"/><path d="M36 -14 v26"/><path d="M54 -14 v26"/></g>
+              <circle cx="-76" cy="-2" r="11" fill="#f2d6b2"/><circle cx="76" cy="-2" r="11" fill="#f2d6b2"/>
+            </g>
+            <circle cx="210" cy="128" r="40" fill="#f2d6b2"/>
+            <path d="M172 118 q6 -34 38 -34 q32 0 38 34 q-12 -14 -38 -14 q-26 0 -38 14 Z" fill="#2e2a26"/>
+            <ellipse cx="210" cy="76" rx="14" ry="12" fill="#2e2a26"/>
+            <rect x="206" y="52" width="8" height="22" rx="3" fill="#b23a2f"/>
+            <path d="M190 122 q6 5 12 0 M218 122 q6 5 12 0" stroke="#3a2f24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            <path d="M204 142 q6 4 12 0" stroke="#8c6a4a" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M196 150 q14 26 28 0" stroke="#3a2f24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(344,392)">
+            <rect width="46" height="46" rx="6" fill="#b23a2f"/>
+            <text x="23" y="33" text-anchor="middle" font-size="26" fill="#fdf3dd" font-family="serif">非</text>
+          </g>
+        </svg>
+        <figcaption class="portrait-plate">韓 非 子 像</figcaption>
+      </figure>
+      <div class="card bio reveal">
+        <p class="drop">韓非（約西元前280年—前233年），戰國末期韓國公子，後世尊稱「韓子」或「韓非子」，是法家思想的集大成者。他出身韓國宗室，天生口吃、不擅言談，卻將滿腹才學傾注於筆墨之間，成為先秦最犀利的政論作家。</p>
+        <p>韓非曾與李斯同門，一起師事儒家大師荀子。他多次上書韓王主張變法圖強，始終未被採納，於是發憤著書，寫下〈孤憤〉〈五蠹〉〈說難〉等名篇。文章傳入秦國後，秦王嬴政讀到〈孤憤〉〈五蠹〉，不禁掩卷長嘆，恨不能與之相見。諷刺的是，韓非最終卻因同門李斯的妒讒，冤死於秦國獄中——斯人雖殞，其學卻照亮了此後兩千年的制度之路。</p>
+        <div class="info-list">
+          <div><b>韓非</b>姓名</div>
+          <div><b>韓子・韓非子</b>尊稱</div>
+          <div><b>戰國末期</b>約280–233 BCE</div>
+          <div><b>韓國宗室</b>出身</div>
+          <div><b>荀子</b>師承</div>
+          <div><b>《韓非子》五十五篇</b>著作</div>
+        </div>
+        <blockquote class="shi-quote">「嗟乎！寡人得見此人與之遊，死不恨矣！」
+          <small>——秦王嬴政讀《孤憤》《五蠹》之嘆</small>
+        </blockquote>
+        <p style="margin:16px 0 6px;font-size:14px;color:var(--gold-deep);letter-spacing:.1em">代表篇章：</p>
+        <div class="chip-row">
+          <span class="chip">〈五蠹〉</span><span class="chip">〈孤憤〉</span><span class="chip">〈說難〉</span><span class="chip">〈顯學〉</span><span class="chip">〈定法〉</span><span class="chip">〈難勢〉</span><span class="chip">〈外儲說左上〉</span>
+        </div>
+      </div>
+    </div>
+    <div class="card tl reveal">
+      <div class="tl-title">▣ 生平大事年表</div>
+      <div class="tl-item"><b>約西元前280年</b><span>生於韓國，為韓國宗室公子。</span></div>
+      <div class="tl-item"><b>青年時期</b><span>師事大儒荀子，與李斯同窗苦讀。</span></div>
+      <div class="tl-item"><b>上書諫韓</b><span>屢次勸諫韓王變法圖強而不被重用，發憤著〈孤憤〉〈五蠹〉〈說難〉。</span></div>
+      <div class="tl-item"><b>約西元前234年</b><span>著作傳入秦國，秦王嬴政讀後傾慕不已，欲見其人。</span></div>
+      <div class="tl-item"><b>西元前233年</b><span>奉命出使秦國，遭李斯、姚賈讒害，冤死於雲陽獄中；其學說後為秦制之基。</span></div>
+    </div>
+  </div>
+  <div class="cloud-div">
+    <svg width="150" height="34" viewBox="0 0 150 34" fill="none" stroke="#b98a3e" stroke-width="3" stroke-linecap="round">
+      <path d="M30 24 q-10 -16 8 -18 q4 -10 16 -6 q12 -6 16 8"/><path d="M120 24 q10 -16 -8 -18 q-4 -10 -16 -6 q-12 -6 -16 8"/><circle cx="75" cy="17" r="5" fill="#b23a2f" stroke="none"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ 法家介紹 ============ -->
+<section class="sec" id="legal">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-seal">貳</span>
+      <h2>法家介紹</h2>
+      <span class="sec-sub">以法治國・富國強兵的務實學派</span>
+    </div>
+    <p class="lede reveal">法家是戰國時期的重要學派，主張「以法治國」，強調法律、權術與威勢在治理中的作用。與儒家提倡禮樂教化不同，法家認為人性趨利避害，必須依靠明確的法令與賞罰，才能維持秩序、富國強兵。法家思想為秦國統一天下提供了理論基礎，也深刻影響了此後歷代的政治制度。點擊下方卡片，認識法家三大支柱——</p>
+    <div class="flip-grid">
+      <div class="flip reveal" tabindex="0"><div class="flip-inner">
+        <div class="face front"><span class="big">法</span><p>法 令 制 度</p><p style="letter-spacing:.05em">商鞅所重</p></div>
+        <div class="face back"><h4>法</h4><p>由官府制定、向全民公布的法律制度。賞罰分明，「法不阿貴，繩不撓曲」，一切以法為準。</p><small>代表人物：商鞅</small></div>
+      </div></div>
+      <div class="flip reveal" tabindex="0"><div class="flip-inner">
+        <div class="face front"><span class="big j">術</span><p>駕 馭 之 術</p><p style="letter-spacing:.05em">申不害所重</p></div>
+        <div class="face back"><h4>術</h4><p>君主考核、駕馭臣下的權術與方法。循名責實、明察功過，使群臣不敢欺瞞。</p><small>代表人物：申不害</small></div>
+      </div></div>
+      <div class="flip reveal" tabindex="0"><div class="flip-inner">
+        <div class="face front"><span class="big s">勢</span><p>君 主 權 勢</p><p style="letter-spacing:.05em">慎到所重</p></div>
+        <div class="face back"><h4>勢</h4><p>君主的權位與威勢。有勢則令行禁止，法令才能推行；失勢則雖有良法亦難施行。</p><small>代表人物：慎到</small></div>
+      </div></div>
+    </div>
+    <p class="flip-hint reveal">▸ 點按或懸停卡片翻面 ◂</p>
+    <div class="fig-grid">
+      <div class="card fig reveal"><div class="seal-mini">悝</div><h4>李悝</h4><div class="era">戰國初・魏國</div><p>著《法經》，是中國第一部較完整的成文法典，法家先驅。</p></div>
+      <div class="card fig reveal"><div class="seal-mini">鞅</div><h4>商鞅</h4><div class="era">戰國中・秦國</div><p>兩度變法、徙木立信，重「法」，奠定秦國富強之基。</p></div>
+      <div class="card fig reveal"><div class="seal-mini">害</div><h4>申不害</h4><div class="era">戰國中・韓國</div><p>相韓十五年，重「術」，內修政教、外應諸侯。</p></div>
+      <div class="card fig reveal"><div class="seal-mini">到</div><h4>慎到</h4><div class="era">戰國中・趙國</div><p>重「勢」，主張權位為治國之本，賢智不足獨恃。</p></div>
+      <div class="card fig reveal"><div class="seal-mini">非</div><h4>韓非</h4><div class="era">戰國末・韓國</div><p>融法、術、勢於一爐，集法家之大成，著《韓非子》。</p></div>
+      <div class="card fig reveal"><div class="seal-mini">斯</div><h4>李斯</h4><div class="era">秦代・楚國上蔡</div><p>韓非同門，輔佐秦始皇統一天下、廢封建、行郡縣。</p></div>
+    </div>
+    <table class="cmp-table reveal">
+      <tr><th>比較面向</th><th>儒家</th><th>法家</th></tr>
+      <tr><td>人性觀點</td><td>人性可以為善，重視教化啟發</td><td>人性好利避害，須以法令約束</td></tr>
+      <tr><td>治國方式</td><td>禮樂德治、為政以德</td><td>明法重刑、信賞必罰</td></tr>
+      <tr><td>倚重對象</td><td>聖賢君子的人格感召</td><td>法律制度與君主權術</td></tr>
+      <tr><td>理想目標</td><td>王道仁政、天下歸心</td><td>富國強兵、君主集權</td></tr>
+    </table>
+    <div class="impact reveal">
+      <h4>法家的歷史影響</h4>
+      <p>秦王嬴政採用法家思想，統一文字、度量衡與法令，建立中國第一個中央集權的大一統帝國。此後兩千年的典章制度，處處可見法家思想的深刻烙印。</p>
+      <div class="q">「法不阿貴，繩不撓曲。」——《韓非子・有度》　｜　「不期修古，不法常可。」——《韓非子・五蠹》</div>
+    </div>
+  </div>
+  <div class="cloud-div">
+    <svg width="150" height="34" viewBox="0 0 150 34" fill="none" stroke="#b98a3e" stroke-width="3" stroke-linecap="round">
+      <path d="M30 24 q-10 -16 8 -18 q4 -10 16 -6 q12 -6 16 8"/><path d="M120 24 q10 -16 -8 -18 q-4 -10 -16 -6 q-12 -6 -16 8"/><circle cx="75" cy="17" r="5" fill="#b23a2f" stroke="none"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ 文本解讀與註釋 ============ -->
+<section class="sec" id="text">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-seal">參</span>
+      <h2>文本解讀與註釋</h2>
+      <span class="sec-sub">原文精讀・點字查註・依序研習</span>
+    </div>
+    <div class="ctx card reveal">
+      <h4>▣ 故事背景</h4>
+      <p>〈外儲說左上〉記載：楚王問田鳩：「墨子是顯赫的學者，行事很好，為什麼言談大多而不尚文采？」田鳩便舉「秦伯嫁女」與「楚人鬻珠」兩則故事作答——過分的裝飾會使人捨本逐末，是為「以文害用」。韓非子記錄並發揮此說，藉以闡明：言論與政令應以實用為本，不可徒託華辭。</p>
+    </div>
+    <div class="reveal">
+      <div class="scroll-v">
+        <div class="roller-h"></div>
+        <div class="scroll-body">
+          <div class="v-title-h">《韓非子・外儲說左上》（節選）</div>
+          <div class="v-main-h" id="vMain">楚人有賣其珠於鄭者，為木蘭之櫝，薰以桂椒，綴以珠玉，飾以玫瑰，輯以羽翠。鄭人買其櫝而還其珠。此可謂善賣櫝矣，未可謂善鬻珠也。</div>
+        </div>
+        <div class="roller-h"></div>
+      </div>
+      <p class="scroll-cap">▲ 點按原文中虛線標註的詞語，可跳至下方注釋卡並閃爍定位 ▲</p>
+    </div>
+    <div class="note-grid" id="noteGrid">
+      <div class="note-card reveal" data-k="zhe"><div class="term">者<i>zhě</i></div><p>代詞，指「……的人」。此指賣珠的楚國商人。</p></div>
+      <div class="note-card reveal" data-k="mulan"><div class="term">木蘭</div><p>香木，木質芬芳而堅美，古人常用以製作精緻器物。</p></div>
+      <div class="note-card reveal" data-k="du"><div class="term">櫝<i>dú</i></div><p>木匣子、盒子。「櫃」亦同義，古時櫝、櫃皆指藏物之匣。</p></div>
+      <div class="note-card reveal" data-k="xun"><div class="term">薰<i>xūn</i></div><p>用火燻烤香草使染香氣，即「以桂椒薰之」。</p></div>
+      <div class="note-card reveal" data-k="guijiao"><div class="term">桂、椒</div><p>桂與花椒，皆為芳香植物，用以增添盒中香氣。</p></div>
+      <div class="note-card reveal" data-k="zhui"><div class="term">綴<i>zhuì</i></div><p>連接、點綴，把珠玉裝飾在盒上。</p></div>
+      <div class="note-card reveal" data-k="meigui"><div class="term">玫瑰</div><p>古指美玉或火齊珠一類寶石，非今日花卉之名。</p></div>
+      <div class="note-card reveal" data-k="ji"><div class="term">輯<i>jí</i></div><p>鑲嵌、連綴，同「緝」。以翠羽貼飾盒面。</p></div>
+      <div class="note-card reveal" data-k="yucui"><div class="term">羽、翠</div><p>翠鳥的羽毛，色澤青綠亮麗，是名貴的裝飾材料。</p></div>
+      <div class="note-card reveal" data-k="huan"><div class="term">還<i>huán</i></div><p>歸還、退回。鄭人買下盒子卻退還珍珠。</p></div>
+      <div class="note-card reveal" data-k="wei"><div class="term">謂</div><p>說、稱。「此可謂……」即「這可以說是……」。</p></div>
+      <div class="note-card reveal" data-k="yu"><div class="term">鬻<i>yù</i></div><p>出售、販賣。「善鬻珠」即善於賣珍珠。</p></div>
+    </div>
+    <div class="zyin reveal">
+      <span><b>櫝</b>dú</span><span><b>鬻</b>yù</span><span><b>還</b>huán</span><span><b>綴</b>zhuì</span><span><b>薰</b>xūn</span><span><b>輯</b>jí</span>
+    </div>
+    <div class="qc-grid">
+      <div class="card qc reveal"><span class="tag">起</span><h5>楚人鬻珠</h5><p>開篇點出人物與事件：楚商攜珠，至鄭國出售。</p></div>
+      <div class="card qc reveal"><span class="tag j">承</span><h5>極寫櫝美</h5><p>連用「薰、綴、飾、輯」四動詞，鋪陳盒子華美至極。</p></div>
+      <div class="card qc reveal"><span class="tag s">轉</span><h5>買櫝還珠</h5><p>鄭人取盒還珠，出人意料，荒謬中見深意。</p></div>
+      <div class="card qc reveal"><span class="tag g">合</span><h5>一句點評</h5><p>「善賣櫝，未善鬻珠」畫龍點睛，寓意盡出。</p></div>
+    </div>
+  </div>
+  <div class="cloud-div">
+    <svg width="150" height="34" viewBox="0 0 150 34" fill="none" stroke="#b98a3e" stroke-width="3" stroke-linecap="round">
+      <path d="M30 24 q-10 -16 8 -18 q4 -10 16 -6 q12 -6 16 8"/><path d="M120 24 q10 -16 -8 -18 q-4 -10 -16 -6 q-12 -6 -16 8"/><circle cx="75" cy="17" r="5" fill="#b23a2f" stroke="none"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ 朗讀 ============ -->
+<section class="sec" id="read">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-seal">肆</span>
+      <h2>朗讀</h2>
+      <span class="sec-sub">聆聽古文韻律・逐字跟讀</span>
+    </div>
+    <div class="card player reveal">
+      <div class="player-ctl">
+        <button class="pbtn" id="btnPlay" title="播放">▶</button>
+        <button class="pbtn small" id="btnPause" title="暫停／繼續">❚❚</button>
+        <button class="pbtn small" id="btnStop" title="停止">■</button>
+        <div class="rate-box">
+          語速 <input type="range" id="rate" min="0.6" max="1.4" step="0.1" value="1"> <span id="rateVal">×1.0</span>
+        </div>
+        <div class="voice-box">
+          語音 <select id="voiceSel" title="選擇朗讀語音"></select>
+        </div>
+      </div>
+      <div class="strip" id="strip" aria-live="polite"></div>
+      <p id="status">準備好了，點「播放」開始朗讀。</p>
+      <p class="player-note">＊朗讀功能使用瀏覽器內建語音合成，可於上方「語音」選單自由切換。<br>＊若您的裝置只提供粵語（yue-HK／zh-HK）語音，可直接選用——粵語保留了古漢語的入聲與聲調，誦讀古文別有韻味；如欲使用國語／普通話，請於系統設定中安裝「中文（台灣）」或「中文（中國）」語音套件後重新整理本頁。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 白話語譯 ============ -->
+<section class="sec" id="trans">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-seal">伍</span>
+      <h2>白話語譯</h2>
+      <span class="sec-sub">逐句對照・點按原文顯示語譯</span>
+    </div>
+    <div class="trans-grid">
+      <figure class="card scene-card reveal">
+        <svg viewBox="0 0 620 330" role="img" aria-label="楚人賣珠於鄭的市集場景">
+          <defs>
+            <linearGradient id="lidG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9a6a3d"/><stop offset="1" stop-color="#6e4426"/></linearGradient>
+            <radialGradient id="pearlS" cx="35%" cy="30%" r="80%"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#d3bd92"/></radialGradient>
+          </defs>
+          <rect width="620" height="330" fill="#fbf5e7"/>
+          <rect x="0" y="0" width="620" height="70" fill="#f6e7c6"/>
+          <path d="M40 70 h540" stroke="#b98a3e" stroke-width="3"/>
+          <g>
+            <rect x="60" y="20" width="500" height="44" fill="#fdf3dd"/>
+            <g fill="#c96a55">
+              <rect x="60" y="20" width="62" height="44"/><rect x="184" y="20" width="62" height="44"/><rect x="308" y="20" width="62" height="44"/><rect x="432" y="20" width="62" height="44"/>
+            </g>
+            <path d="M60 64 L122 78 L184 64 L246 78 L308 64 L370 78 L432 64 L494 78 L560 64" fill="none" stroke="#c96a55" stroke-width="6"/>
+          </g>
+          <g opacity=".9">
+            <rect x="150" y="86" width="26" height="64" fill="#b23a2f"/>
+            <text x="163" y="112" text-anchor="middle" font-size="15" fill="#fdf3dd" font-family="serif">鄭</text>
+            <text x="163" y="132" text-anchor="middle" font-size="15" fill="#fdf3dd" font-family="serif">市</text>
+          </g>
+          <path d="M0 280 h620" stroke="#d9c49a" stroke-width="4"/>
+          <rect x="230" y="200" width="160" height="14" rx="4" fill="#8a5a33"/>
+          <rect x="244" y="214" width="12" height="66" fill="#6e4426"/><rect x="364" y="214" width="12" height="66" fill="#6e4426"/>
+          <g transform="translate(120,150)">
+            <path d="M50 60 q-30 8 -38 70 l76 0 q-8 -62 -38 -70 Z" fill="#a34a3a"/>
+            <path d="M30 96 q-18 8 -16 30 l20 4 Z" fill="#b95c4a"/>
+            <path d="M70 96 q20 6 34 22 l-8 10 q-16 -12 -30 -16 Z" fill="#b95c4a"/>
+            <circle cx="50" cy="42" r="20" fill="#f2d6b2"/>
+            <path d="M32 38 q3 -16 18 -16 q15 0 18 16 q-8 -7 -18 -7 q-10 0 -18 7 Z" fill="#2e2a26"/>
+            <path d="M42 44 q3 3 6 0 M52 44 q3 3 6 0" stroke="#3a2f24" stroke-width="1.8" fill="none"/>
+          </g>
+          <g transform="translate(246,168)">
+            <rect x="0" y="10" width="64" height="34" rx="5" fill="url(#lidG2)"/>
+            <rect x="-3" y="0" width="70" height="14" rx="5" fill="#b3814d" stroke="#5c3a1e" stroke-width="2"/>
+            <circle cx="32" cy="27" r="8" fill="#3e7c5f"/><circle cx="32" cy="27" r="3" fill="#a8d3bd"/>
+          </g>
+          <g transform="translate(420,148)">
+            <path d="M50 62 q-30 8 -38 72 l76 0 q-8 -64 -38 -72 Z" fill="#3e7c5f"/>
+            <path d="M28 100 q-22 2 -36 18 l6 12 q18 -12 34 -14 Z" fill="#4f9271"/>
+            <path d="M72 100 q20 8 30 26 l-10 8 q-12 -16 -26 -20 Z" fill="#4f9271"/>
+            <circle cx="50" cy="44" r="20" fill="#f2d6b2"/>
+            <path d="M32 40 q3 -16 18 -16 q15 0 18 16 q-8 -7 -18 -7 q-10 0 -18 7 Z" fill="#2e2a26"/>
+            <path d="M42 46 q3 3 6 0 M52 46 q3 3 6 0" stroke="#3a2f24" stroke-width="1.8" fill="none"/>
+          </g>
+          <ellipse cx="330" cy="262" rx="46" ry="10" fill="#dd8a72" opacity=".55"/>
+          <circle cx="330" cy="252" r="15" fill="url(#pearlS)"/>
+          <circle cx="330" cy="252" r="24" fill="none" stroke="#e9cf98" stroke-width="2" opacity=".8"/>
+        </svg>
+        <figcaption>楚商獻櫝・鄭人取盒而遺珠</figcaption>
+      </figure>
+      <div class="card baihua reveal">
+        <h4>▣ 全文語譯</h4>
+        <p>楚國有個到鄭國賣珍珠的人，他用香木蘭做成一隻精緻的盒子，用桂與花椒燻上香氣，用珍珠玉石加以點綴，用玫瑰寶石裝飾，再鑲上翠鳥的青羽。結果鄭國人買下了他的盒子，卻把珍珠退還給他。這位楚商可以說善於賣盒子，卻不能說善於賣珍珠啊！</p>
+      </div>
+    </div>
+    <div class="pair-tools reveal">
+      <button class="tool-btn" id="showAll">全部展開語譯</button>
+      <button class="tool-btn" id="hideAll">全部收合</button>
+    </div>
+    <div class="reveal">
+      <div class="card pair"><div class="pair-orig"><span class="zh">楚人有賣其珠於鄭者，</span><span class="hint">點我看語譯</span></div><div class="pair-trans"><p>楚國有個到鄭國出售珍珠的人。</p></div></div>
+      <div class="card pair"><div class="pair-orig"><span class="zh">為木蘭之櫝，薰以桂椒，綴以珠玉，飾以玫瑰，輯以羽翠。</span><span class="hint">點我看語譯</span></div><div class="pair-trans"><p>他用香木蘭做成精緻的盒子，用桂和花椒燻上香氣，用珍珠玉石加以點綴，用玫瑰寶石裝飾，再鑲上翠鳥的羽毛。</p></div></div>
+      <div class="card pair"><div class="pair-orig"><span class="zh">鄭人買其櫝而還其珠。</span><span class="hint">點我看語譯</span></div><div class="pair-trans"><p>鄭國人買下了他的盒子，卻把珍珠退還給他。</p></div></div>
+      <div class="card pair"><div class="pair-orig"><span class="zh">此可謂善賣櫝矣，未可謂善鬻珠也。</span><span class="hint">點我看語譯</span></div><div class="pair-trans"><p>這可以說他善於賣盒子，卻不能說他善於賣珍珠啊！</p></div></div>
+    </div>
+    <div class="card ext reveal">
+      <h4>▣ 延伸閱讀：故事的議論落點（原文後段）</h4>
+      <div class="anc">今世之談也，皆道辯說文辭之言，人主覽其文而忘有用。墨子之說，傳先王之道，論聖人之言，以宣告人。若辯其辭，則恐人懷其文忘其直，以文害用也。此與楚人鬻珠、秦伯嫁女同類，故其言多不辯。</div>
+      <div class="bai"><p>如今的言論，都愛誇耀雄辯華美的辭采；君主只觀賞它的文采，卻忘了它實際的用處。墨子的學說傳揚先王之道、陳說聖人之言來教化世人；倘若刻意把辭藻修飾得過於巧妙，只怕人們會貪戀文采而忘記本意，反而「以文害用」——這與楚人賣珠、秦伯嫁女是同樣的道理，所以墨子的言談大多不尚辯飾。</p></div>
+    </div>
+  </div>
+  <div class="cloud-div">
+    <svg width="150" height="34" viewBox="0 0 150 34" fill="none" stroke="#b98a3e" stroke-width="3" stroke-linecap="round">
+      <path d="M30 24 q-10 -16 8 -18 q4 -10 16 -6 q12 -6 16 8"/><path d="M120 24 q10 -16 -8 -18 q-4 -10 -16 -6 q-12 -6 -16 8"/><circle cx="75" cy="17" r="5" fill="#b23a2f" stroke="none"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ 賞析 ============ -->
+<section class="sec" id="apprec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-seal">陸</span>
+      <h2>賞析</h2>
+      <span class="sec-sub">藝術特色・核心寓意・成語小字典</span>
+    </div>
+    <div class="feat-grid">
+      <div class="card feat reveal"><span class="num">壹</span><h4>寓言說理，深入淺出</h4><p>以市井買賣的小故事承載深刻的政治道理，生動易記、引人入勝，是先秦說理散文的常用手法。</p><span class="ex">一例勝千言：鄭人的荒謬取捨，勝過長篇大論。</span></div>
+      <div class="card feat reveal"><span class="num">貳</span><h4>鋪陳對比，張力十足</h4><p>連用「薰、綴、飾、輯」四組動詞極寫盒子之美，再突然落筆「買櫝還珠」，形成強烈反差。</p><span class="ex">盒子越華麗，結局越荒謬，寓意越深刻。</span></div>
+      <div class="card feat reveal"><span class="num">參</span><h4>駢散相間，音韻鏗鏘</h4><p>「薰以桂椒，綴以珠玉，飾以玫瑰，輯以羽翠」四字排比整飭，節奏明快，讀來朗朗上口。</p><span class="ex">試誦一遍，即能感受其韻律之美。</span></div>
+    </div>
+    <div class="card theme reveal">
+      <div class="theme-l">
+        <div class="big">勿以文害用</div>
+        <small>核心寓意・取捨之道</small>
+      </div>
+      <div class="theme-r">
+        <ul>
+          <li><b>對人主：</b>聽言觀行當責求實效，勿為華麗辭藻所迷惑，「覽其文而忘有用」正是大病。</li>
+          <li><b>對世人：</b>處事須分清本末主次，不可捨本逐末、取捨失當。</li>
+          <li><b>對今人：</b>形式應服務內容——包裝再精美，也不能取代產品本身的價值。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card idiom reveal">
+      <div class="idiom-l">
+        <h4>買櫝還珠</h4>
+        <div class="zy">ㄇㄞˇ ㄉㄨˊ ㄏㄨㄢˊ ㄓㄨ</div>
+        <div class="src">出處：《韓非子・外儲說左上》</div>
+      </div>
+      <div class="idiom-r">
+        <div class="full"><b>釋義：</b>買下盒子、退還珍珠。比喻取捨失當，重視次要的外表，反而忽略了主要的實質。</div>
+        <div><b>用法：</b>多含貶義，可作謂語、賓語、定語。</div>
+        <div><b>造句：</b>只追求華麗包裝而忽略內容品質，無異是買櫝還珠。</div>
+        <div><b>近義：</b>捨本逐末、本末倒置、捨本從末。</div>
+        <div><b>反義：</b>去粗取精、去蕪存菁、探驪得珠。</div>
+      </div>
+    </div>
+    <div class="card think reveal">
+      <h4>▣ 延伸思考</h4>
+      <ol>
+        <li>生活中還有哪些「櫝」與「珠」的例子？（例如：過度包裝、只重學歷不重能力、只重形式不重內涵……）</li>
+        <li>如果你是那位楚國商人，會如何調整策略，讓顧客「買珠」而不是只「買櫝」？</li>
+        <li>「文采」一定是壞事嗎？韓非反對的究竟是文采本身，還是「以文害用」？</li>
+      </ol>
+    </div>
+  </div>
+  <div class="cloud-div">
+    <svg width="150" height="34" viewBox="0 0 150 34" fill="none" stroke="#b98a3e" stroke-width="3" stroke-linecap="round">
+      <path d="M30 24 q-10 -16 8 -18 q4 -10 16 -6 q12 -6 16 8"/><path d="M120 24 q10 -16 -8 -18 q-4 -10 -16 -6 q-12 -6 -16 8"/><circle cx="75" cy="17" r="5" fill="#b23a2f" stroke="none"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ 論辯推演 ============ -->
+<section class="sec" id="debate">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-seal">柒</span>
+      <h2>論辯推演</h2>
+      <span class="sec-sub">田鳩的推理鏈・類比論證・正反論辯</span>
+    </div>
+
+    <!-- 推理鏈 -->
+    <div class="card chain-card reveal">
+      <h4>▣ 田鳩的推理鏈：六步拆解密</h4>
+      <p class="chain-lede">「買櫝還珠」並非孤立的故事——它是田鳩回答楚王的一場精彩論辯。點「下一步」，看他如何由設問、譬喻，一層層推演到結論：</p>
+      <div class="chain-steps" id="chainSteps"></div>
+      <div class="chain-ctl">
+        <button class="chain-btn" id="chainPrev">◂ 上一步</button>
+        <span id="chainProg">第 0 / 6 步</span>
+        <button class="chain-btn main" id="chainNext">下一步 ▸</button>
+        <button class="chain-btn" id="chainAll">一次展開</button>
+      </div>
+    </div>
+
+    <!-- 論證方法 -->
+    <div class="method-grid">
+      <div class="card method reveal"><div class="m-seal">喻</div><h5>類比論證</h5><p>以「嫁女」「賣珠」兩則生活故事，類比「言論文采」的政治議題，化抽象為具體，淺近而有力。</p></div>
+      <div class="card method reveal"><div class="m-seal">偶</div><h5>並例互證</h5><p>秦伯嫁女與楚人鬻珠雙例並舉，同構互映，證明「裝飾過度反害其用」並非偶發，而是通則。</p></div>
+      <div class="card method reveal"><div class="m-seal">環</div><h5>首尾呼應</h5><p>由楚王之問起，至「故其言多不辯」結，環環相扣、有問必答，展現嚴密的論辯結構。</p></div>
+    </div>
+
+    <!-- 排序挑戰 -->
+    <div class="card sort-card reveal">
+      <h4>▣ 推演排序挑戰</h4>
+      <p class="chain-lede">請依論辯先後順序，<b>逐一點按</b>右側的步驟卡，把它們填入左側的六個步驟格。放錯會震動提示，全對即過關！</p>
+      <div class="sort-board">
+        <div class="sort-col">
+          <h5>論辯步驟（依序填入）</h5>
+          <div class="sort-slots" id="sortSlots"></div>
+        </div>
+        <div class="sort-col">
+          <h5>待選步驟（點按選取）</h5>
+          <div class="sort-pool" id="sortPool"></div>
+        </div>
+      </div>
+      <p class="sort-msg" id="sortMsg">準備好了嗎？點第一張你認為的開端。</p>
+      <div style="margin-top:6px"><button class="chain-btn" id="sortReset">重新挑戰 ↻</button></div>
+    </div>
+
+    <!-- 論辯擂台 -->
+    <div class="reveal">
+      <h4 class="debate-head">▣ 論辯擂台：文采究竟是「珠」是「櫝」？</h4>
+      <div class="debate-grid">
+        <div class="side pro">
+          <h5>正方・實用派</h5>
+          <div class="claim">主張：言辭不應以文飾為貴</div>
+          <span class="who">法家立場</span>
+          <ul>
+            <li><b>言貴在用：</b>言論的價值在於解決實際問題，而非辭藻之美。</li>
+            <li><b>文過飾非：</b>華麗修辭易惑亂聽者判斷，使人「懷其文忘其直」。</li>
+            <li><b>前車之鑑：</b>秦伯嫁女、楚人鬻珠，皆是裝飾反害其用的實例。</li>
+            <li><b>為政之道：</b>人主「聽其言必責其用」，方能察實情、明賞罰。</li>
+          </ul>
+        </div>
+        <div class="vs-mid"><div class="vs-seal">辯</div></div>
+        <div class="side con">
+          <h5>反方・文采派</h5>
+          <div class="claim">主張：適度文采有助思想傳播</div>
+          <span class="who">文學立場</span>
+          <ul>
+            <li><b>言之無文，行之不遠：</b>有文采的表達，能讓思想傳得更遠、更久。</li>
+            <li><b>美櫝亦能引客：</b>好的形式吸引聽眾入門，進而理解內容。</li>
+            <li><b>文用非對立：</b>形式與內容可以相得益彰，關鍵在分寸。</li>
+            <li><b>韓非自證：</b>《韓非子》本身文辭犀利動人，豈非「善用文」的例證？</li>
+          </ul>
+        </div>
+      </div>
+      <div class="vote-box reveal">
+        <p style="font-size:14px;color:var(--ink-soft);margin-bottom:12px">讀完雙方論點，你支持哪一方？投下你的一票：</p>
+        <div class="vote-btns">
+          <button class="vote-btn p" id="votePro">投給正方・實用派</button>
+          <button class="vote-btn c" id="voteCon">投給反方・文采派</button>
+        </div>
+        <div class="vote-bar"><i class="vp" id="vpBar"></i><i class="vc" id="vcBar"></i></div>
+        <div class="vote-labels"><span id="vpLabel">正方 0%</span><span id="vcLabel">反方 0%</span></div>
+        <div class="verdict" id="verdict"><b>評析：</b>韓非子的立場其實並非否定一切文采，而是反對「以文害用」——形式應為內容服務，不可喧賓奪主。兩方之爭，關鍵正在「度」的拿捏：讓「櫝」襯托「珠」，而非取代「珠」。</div>
+      </div>
+    </div>
+  </div>
+  <div class="cloud-div">
+    <svg width="150" height="34" viewBox="0 0 150 34" fill="none" stroke="#b98a3e" stroke-width="3" stroke-linecap="round">
+      <path d="M30 24 q-10 -16 8 -18 q4 -10 16 -6 q12 -6 16 8"/><path d="M120 24 q10 -16 -8 -18 q-4 -10 -16 -6 q-12 -6 -16 8"/><circle cx="75" cy="17" r="5" fill="#b23a2f" stroke="none"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ 互動問答 ============ -->
+<section class="sec" id="quiz">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-seal">捌</span>
+      <h2>互動問答</h2>
+      <span class="sec-sub">七道挑戰・驗收學習成果</span>
+    </div>
+    <div class="card quiz reveal">
+      <div id="quizBody">
+        <div class="quiz-top"><span>目前進度</span><b id="qNum">第 1 題 / 共 7 題</b></div>
+        <div class="qbar"><i id="qBar" style="width:14%"></i></div>
+        <div class="qq" id="qText"></div>
+        <div class="opts" id="qOpts"></div>
+        <div class="qexp" id="qExp"></div>
+        <button class="btn solid qnext" id="qNext">下一題 ▸</button>
+      </div>
+      <div id="quizResult" class="result" style="display:none"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="meander"></div>
+  <div class="wrap">
+    <span class="f-seal">櫝珠</span>
+    <h3>櫝 珠 學 堂</h3>
+    <div class="f-line"></div>
+    <p>原文據《韓非子・外儲說左上》整理，注釋與語譯供教學參考。<br>朗讀功能使用瀏覽器內建語音合成・插圖為本站手繪向量繪製。<br>「此可謂善賣櫝矣，未可謂善鬻珠也。」</p>
+  </div>
+</footer>
+
+<button id="toTop" title="回到頁首">↑</button>
+
+<script>
+(function(){
+  /* ===== 漸顯動畫 ===== */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* ===== 導覽列高亮 ===== */
+  var links = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+  var secIO = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.toggle('active', l.getAttribute('href') === '#'+e.target.id); });
+      }
+    });
+  },{rootMargin:'-35% 0px -55% 0px'});
+  document.querySelectorAll('main section[id]').forEach(function(s){ secIO.observe(s); });
+
+  /* ===== 回頂端 ===== */
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function(){ toTop.classList.toggle('show', window.scrollY > 600); },{passive:true});
+  toTop.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+  /* ===== 原文標注註釋記號 ===== */
+  var annoMap = [
+    ['者','zhe'],['木蘭','mulan'],['櫝','du'],['薰','xun'],['桂','guijiao'],
+    ['綴','zhui'],['玫瑰','meigui'],['輯','ji'],['羽翠','yucui'],
+    ['還','huan'],['謂','wei'],['鬻','yu']
+  ];
+  var vMain = document.getElementById('vMain');
+  var raw = vMain.textContent;
+  annoMap.forEach(function(a){
+    raw = raw.split(a[0]).join('<span class="anno" data-k="'+a[1]+'">'+a[0]+'</span>');
+  });
+  vMain.innerHTML = raw;
+
+  function flash(el, cls){ el.classList.add(cls); setTimeout(function(){ el.classList.remove(cls); },1300); }
+  vMain.querySelectorAll('.anno').forEach(function(sp){
+    sp.addEventListener('click', function(){
+      var card = document.querySelector('.note-card[data-k="'+sp.dataset.k+'"]');
+      if(card){ card.scrollIntoView({behavior:'smooth',block:'center'}); flash(card,'flash'); }
+      flash(sp,'flash');
+    });
+  });
+  document.querySelectorAll('.note-card').forEach(function(c){
+    c.addEventListener('click', function(){
+      var sp = document.querySelector('.anno[data-k="'+c.dataset.k+'"]');
+      if(sp){ flash(sp,'flash'); sp.scrollIntoView({behavior:'smooth',block:'center',inline:'center'}); }
+      flash(c,'flash');
+    });
+  });
+
+  /* ===== 翻牌卡片（行動裝置點按） ===== */
+  document.querySelectorAll('.flip').forEach(function(f){
+    f.addEventListener('click', function(){ f.classList.toggle('flipped'); });
+    f.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); f.classList.toggle('flipped'); }});
+  });
+
+  /* ===== 語譯開合 ===== */
+  var pairs = document.querySelectorAll('.pair');
+  pairs.forEach(function(p){
+    p.querySelector('.pair-orig').addEventListener('click', function(){ p.classList.toggle('open'); });
+  });
+  document.getElementById('showAll').addEventListener('click', function(){ pairs.forEach(function(p){ p.classList.add('open'); }); });
+  document.getElementById('hideAll').addEventListener('click', function(){ pairs.forEach(function(p){ p.classList.remove('open'); }); });
+
+  /* ===== 朗讀（語音合成・可選語音） ===== */
+  var readText = '楚人有賣其珠於鄭者，為木蘭之櫝，薰以桂椒，綴以珠玉，飾以玫瑰，輯以羽翠。鄭人買其櫝而還其珠。此可謂善賣櫝矣，未可謂善鬻珠也。';
+  var strip = document.getElementById('strip');
+  readText.split('').forEach(function(ch){
+    var s = document.createElement('span'); s.textContent = ch; strip.appendChild(s);
+  });
+  var chars = Array.prototype.slice.call(strip.children);
+  var statusEl = document.getElementById('status');
+  var btnPlay = document.getElementById('btnPlay');
+  var btnPause = document.getElementById('btnPause');
+  var btnStop = document.getElementById('btnStop');
+  var rateInput = document.getElementById('rate');
+  var rateVal = document.getElementById('rateVal');
+  var voiceSel = document.getElementById('voiceSel');
+  var rate = 1, speaking = false, paused = false;
+  var fbTimer = null, fbIdx = 0, gotBoundary = false, current = -1;
+  var zhVoices = [];
+
+  rateInput.addEventListener('input', function(){ rate = parseFloat(rateInput.value); rateVal.textContent = '×'+rate.toFixed(1); });
+
+  function langName(lang){
+    if(/zh[-_](TW|Hant)/i.test(lang)) return '國語（台灣）';
+    if(/zh[-_]HK/i.test(lang) || /^yue/i.test(lang)) return '粵語（香港）';
+    if(/zh[-_](CN|Hans|SG)/i.test(lang)) return '普通話（中國）';
+    if(/^zh/i.test(lang)) return '中文';
+    return '';
+  }
+  function loadVoices(){
+    if(!('speechSynthesis' in window)) return;
+    var vs = speechSynthesis.getVoices() || [];
+    zhVoices = vs.filter(function(v){ return /^(zh|yue|cmn|nan|hak)/i.test(v.lang); });
+    voiceSel.innerHTML = '';
+    if(!zhVoices.length){
+      var o = document.createElement('option');
+      o.textContent = '未偵測到中文語音';
+      voiceSel.appendChild(o);
+      return;
+    }
+    zhVoices.forEach(function(v,i){
+      var o = document.createElement('option');
+      o.value = i;
+      var tag = langName(v.lang);
+      o.textContent = (tag ? tag+'・' : '') + v.name + '（'+v.lang+'）';
+      voiceSel.appendChild(o);
+    });
+    var pref = zhVoices.findIndex(function(v){ return /zh[-_](TW|Hant)/i.test(v.lang); });
+    if(pref < 0) pref = zhVoices.findIndex(function(v){ return /zh[-_](CN|Hans|SG)/i.test(v.lang); });
+    if(pref < 0) pref = zhVoices.findIndex(function(v){ return /^zh/i.test(v.lang); });
+    if(pref < 0) pref = 0;
+    voiceSel.value = pref;
+    if(/^(zh[-_]HK|yue)/i.test(zhVoices[pref].lang)){
+      statusEl.textContent = '偵測到您的裝置目前提供粵語語音，可直接聆聽（粵語誦讀古文別有韻味）；如需國語，請於系統安裝中文語音套件後重新整理。';
+    }
+  }
+  if('speechSynthesis' in window){
+    loadVoices();
+    speechSynthesis.onvoiceschanged = loadVoices;
+  } else {
+    voiceSel.innerHTML = '<option>瀏覽器不支援語音合成</option>';
+  }
+
+  function hi(i){
+    if(i < 0 || i >= chars.length) return;
+    chars.forEach(function(c,idx){ c.classList.toggle('on', idx===i); });
+    current = i;
+    chars[i].scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+  }
+  function clearHi(){ chars.forEach(function(c){ c.classList.remove('on'); }); current = -1; }
+  function stopFallback(){ if(fbTimer){ clearInterval(fbTimer); fbTimer = null; } }
+  function startFallback(){
+    stopFallback(); fbIdx = current >= 0 ? current + 1 : 0;
+    fbTimer = setInterval(function(){
+      hi(Math.min(fbIdx, readText.length - 1)); fbIdx++;
+      if(fbIdx >= readText.length) stopFallback();
+    }, 520 / rate);
+  }
+  function startSpeak(){
+    if(!('speechSynthesis' in window)){ statusEl.textContent = '抱歉，此瀏覽器不支援語音合成朗讀。'; return; }
+    loadVoices();
+    var voice = null;
+    var vi = parseInt(voiceSel.value, 10);
+    if(!isNaN(vi) && zhVoices[vi]) voice = zhVoices[vi];
+    if(!zhVoices.length){
+      statusEl.textContent = '未偵測到中文語音，將嘗試以系統預設語音朗讀（發音可能不正確）。';
+    }
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(readText);
+    if(voice){ u.voice = voice; u.lang = voice.lang; }
+    else { u.lang = 'zh-TW'; }
+    u.rate = rate;
+    gotBoundary = false; clearHi();
+    u.onboundary = function(e){
+      if(typeof e.charIndex === 'number'){ gotBoundary = true; stopFallback(); hi(e.charIndex); }
+    };
+    u.onstart = function(){
+      var tag = voice ? langName(voice.lang) : '';
+      statusEl.textContent = (tag ? '朗讀中（'+tag+'）……' : '朗讀中……') + '跟著發亮的字輕輕誦讀吧。';
+      setTimeout(function(){ if(!gotBoundary) startFallback(); },1200);
+    };
+    u.onend = function(){
+      stopFallback(); speaking = false; paused = false;
+      statusEl.textContent = '朗讀完畢。想再聽一次嗎？';
+      setTimeout(clearHi, 900);
+    };
+    u.onerror = function(){
+      stopFallback(); speaking = false; paused = false;
+      statusEl.textContent = '朗讀出了點問題，請再試一次（建議使用 Chrome／Edge）。';
+    };
+    speaking = true; paused = false;
+    speechSynthesis.speak(u);
+    statusEl.textContent = '準備發音……';
+  }
+  btnPlay.addEventListener('click', function(){
+    if(speaking && paused){ speechSynthesis.resume(); paused = false; statusEl.textContent = '繼續朗讀……'; return; }
+    if(speaking) return;
+    startSpeak();
+  });
+  btnPause.addEventListener('click', function(){
+    if(!speaking) return;
+    if(paused){ speechSynthesis.resume(); paused = false; statusEl.textContent = '繼續朗讀……'; }
+    else{ speechSynthesis.pause(); paused = true; statusEl.textContent = '已暫停。'; }
+  });
+  btnStop.addEventListener('click', function(){
+    if('speechSynthesis' in window) speechSynthesis.cancel();
+    stopFallback(); clearHi(); speaking = false; paused = false;
+    statusEl.textContent = '已停止。點「播放」重新開始。';
+  });
+
+  /* ===== 論辯推演：推理鏈 ===== */
+  var CHAIN = [
+    {tag:'設問', cls:'t1', title:'楚王之問：墨子之言何不辯？',
+     text:'楚王問田鳩：墨子是當世顯學，行事很好（「其身體則可」），為什麼言談大多、卻不講究文采（「其言多而不辯」）？——這是整段論辯要回答的問題。'},
+    {tag:'譬喻一', cls:'t2', title:'秦伯嫁女：飾妾而賤女',
+     text:'秦伯把女兒嫁給晉國公子，讓晉國為新娘盛裝打扮，又帶了七十位穿著華服的陪嫁媵妾。結果晉人喜愛那些妾侍，反而輕賤了公主。此可謂「善嫁妾，未可謂善嫁女」。'},
+    {tag:'譬喻二', cls:'t3', title:'楚人鬻珠：買櫝而還珠',
+     text:'楚商把裝珍珠的木盒薰香、綴玉、飾寶、鑲羽，裝飾得極盡華美；鄭人卻買下盒子、退還珍珠。此可謂「善賣櫝，未可謂善鬻珠」——裝飾越過分，越會掩蓋真正的主角。'},
+    {tag:'引申', cls:'t4', title:'今世之談：覽其文而忘有用',
+     text:'田鳩把兩則故事類比到當下：今世的言論都愛誇耀辯說與華美文辭，君主只觀賞它的文采，卻忘記了言論實際的用處。'},
+    {tag:'推論', cls:'t5', title:'若辯其辭：恐以文害用',
+     text:'墨子傳揚先王之道、陳說聖人之言來教化世人；倘若刻意修飾辭采，只怕人們會「懷其文忘其直」，讓文采損害了實用——這就是「以文害用」。'},
+    {tag:'結論', cls:'t6', title:'故墨子之言多不辯',
+     text:'所以墨子的言談大多不尚辯飾：這不是「不能」，而是「不為」——刻意避免重蹈「秦伯嫁女、楚人鬻珠」的覆轍。首尾呼應，圓滿回答了楚王之問。'}
+  ];
+  var chainWrap = document.getElementById('chainSteps');
+  var chainStepEls = [], chainArrowEls = [];
+  CHAIN.forEach(function(s,i){
+    if(i > 0){
+      var ar = document.createElement('div');
+      ar.className = 'chain-arrow'; ar.textContent = '▼';
+      chainWrap.appendChild(ar); chainArrowEls.push(ar);
+    }
+    var d = document.createElement('div');
+    d.className = 'chain-step';
+    d.innerHTML = '<span class="step-tag '+s.cls+'">'+s.tag+'</span><div class="step-body"><h5>'+s.title+'</h5><p>'+s.text+'</p></div>';
+    chainWrap.appendChild(d); chainStepEls.push(d);
+  });
+  var chainIdx = 0;
+  var chainProg = document.getElementById('chainProg');
+  var chainPrev = document.getElementById('chainPrev');
+  var chainNext = document.getElementById('chainNext');
+  var chainAll = document.getElementById('chainAll');
+  function updateChain(){
+    chainStepEls.forEach(function(el,i){ el.classList.toggle('lit', i < chainIdx); });
+    chainArrowEls.forEach(function(el,i){ el.classList.toggle('lit', i < chainIdx); });
+    chainProg.textContent = '第 ' + chainIdx + ' / ' + CHAIN.length + ' 步';
+    chainPrev.disabled = (chainIdx === 0);
+    chainNext.disabled = (chainIdx === CHAIN.length);
+    if(chainIdx > 0 && chainIdx < CHAIN.length){
+      chainStepEls[chainIdx-1].scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+  }
+  chainPrev.addEventListener('click', function(){ if(chainIdx > 0){ chainIdx--; updateChain(); } });
+  chainNext.addEventListener('click', function(){ if(chainIdx < CHAIN.length){ chainIdx++; updateChain(); } });
+  chainAll.addEventListener('click', function(){ chainIdx = CHAIN.length; updateChain(); });
+  updateChain();
+
+  /* ===== 論辯推演：排序挑戰 ===== */
+  var SORT_ITEMS = [
+    '楚王問：墨子之言何不辯？',
+    '舉「秦伯嫁女」為喻：飾妾而賤女',
+    '舉「楚人鬻珠」為喻：買櫝而還珠',
+    '類比今世：人主覽其文而忘有用',
+    '推論：若辯其辭，恐以文害用',
+    '結論：故墨子之言多不辯'
+  ];
+  var sortSlots = document.getElementById('sortSlots');
+  var sortPool = document.getElementById('sortPool');
+  var sortMsg = document.getElementById('sortMsg');
+  var sortReset = document.getElementById('sortReset');
+  var placedCount = 0, slotEls = [], locked = false;
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for(var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function initSort(){
+    locked = false; placedCount = 0;
+    sortSlots.innerHTML = ''; sortPool.innerHTML = ''; slotEls = [];
+    sortMsg.className = 'sort-msg';
+    sortMsg.textContent = '準備好了嗎？點第一張你認為的開端。';
+    for(var i = 0; i < SORT_ITEMS.length; i++){
+      var slot = document.createElement('div');
+      slot.className = 'sort-slot';
+      slot.innerHTML = '<span class="idx">'+(i+1)+'</span><span>（待填入）</span>';
+      sortSlots.appendChild(slot); slotEls.push(slot);
+    }
+    shuffle(SORT_ITEMS.map(function(_,i){ return i; })).forEach(function(idx){
+      var tile = document.createElement('button');
+      tile.className = 'sort-tile';
+      tile.textContent = SORT_ITEMS[idx];
+      tile.dataset.idx = idx;
+      tile.addEventListener('click', function(){ pickTile(tile); });
+      sortPool.appendChild(tile);
+    });
+  }
+  function pickTile(tile){
+    if(locked) return;
+    var idx = parseInt(tile.dataset.idx, 10);
+    if(idx === placedCount){
+      var slot = slotEls[placedCount];
+      slot.classList.add('filled');
+      slot.children[1].textContent = SORT_ITEMS[idx];
+      tile.remove();
+      placedCount++;
+      if(placedCount === SORT_ITEMS.length){
+        locked = true;
+        sortMsg.className = 'sort-msg ok';
+        sortMsg.textContent = '✦ 完全正確！你已掌握田鳩的論辯推演脈絡，可稱韓門高足。';
+      } else {
+        sortMsg.className = 'sort-msg';
+        sortMsg.textContent = '✓ 正確！已填入第 ' + placedCount + ' 步，繼續。';
+      }
+    } else {
+      flash(tile,'shake');
+      sortMsg.className = 'sort-msg no';
+      sortMsg.textContent = '✗ 這一步的順序不對，回想一下推理鏈，再試一次。';
+    }
+  }
+  sortReset.addEventListener('click', initSort);
+  initSort();
+
+  /* ===== 論辯推演：投票 ===== */
+  var votes = {p:0, c:0}, voted = false;
+  var votePro = document.getElementById('votePro');
+  var voteCon = document.getElementById('voteCon');
+  var vpBar = document.getElementById('vpBar');
+  var vcBar = document.getElementById('vcBar');
+  var vpLabel = document.getElementById('vpLabel');
+  var vcLabel = document.getElementById('vcLabel');
+  var verdict = document.getElementById('verdict');
+  function cast(side){
+    if(voted) return;
+    voted = true;
+    votes[side]++;
+    var total = votes.p + votes.c;
+    var pp = Math.round(votes.p / total * 100);
+    vpBar.style.width = pp + '%';
+    vcBar.style.width = (100 - pp) + '%';
+    vpLabel.textContent = '正方 ' + pp + '%（' + votes.p + ' 票）';
+    vcLabel.textContent = '反方 ' + (100 - pp) + '%（' + votes.c + ' 票）';
+    votePro.disabled = true; voteCon.disabled = true;
+    verdict.classList.add('show');
+  }
+  votePro.addEventListener('click', function(){ cast('p'); });
+  voteCon.addEventListener('click', function(){ cast('c'); });
+
+  /* ===== 互動問答 ===== */
+  var QS = [
+    {q:'「鄭人買其櫝而還其珠」中的「櫝」，意思是什麼？',
+     opts:['珍珠','木盒子','絲布','酒器'], a:1,
+     ex:'「櫝」（音「獨」）就是木製的匣子、盒子。鄭人買下的正是那隻裝飾華美的盒子，而把真正的珍珠退還了。'},
+    {q:'楚國商人用什麼木材製作裝珍珠的盒子？',
+     opts:['楠木','松木','木蘭','檀木'], a:2,
+     ex:'原文「為木蘭之櫝」——木蘭是帶有香氣的樹木，木質香美，古人常用來製作精緻器物。'},
+    {q:'鄭國人為什麼買下盒子、卻退還珍珠？',
+     opts:['珍珠是假的','他只被盒子的華美外表吸引','盒子比珍珠貴重','商人強迫推銷'], a:1,
+     ex:'盒子「薰以桂椒，綴以珠玉，飾以玫瑰，輯以羽翠」極盡華美，鄭人被外表迷惑，忽略了珍珠才是真正貴重之物，取捨失當。'},
+    {q:'「未可謂善鬻珠也」中的「鬻」，意思是什麼？',
+     opts:['購買','出售','裝飾','歸還'], a:1,
+     ex:'「鬻」（音「育」）是賣的意思。「善鬻珠」即善於賣珍珠。'},
+    {q:'韓非子藉這個故事，主要想說明什麼道理？',
+     opts:['包裝越精美越好','言辭越華美越好','勿為文采所迷而忽略實際功用','珍珠必須配好盒子'], a:2,
+     ex:'韓非以此諷喻「以文害用」：君主若只欣賞華美言辭而忘了實際功用，就像鄭人買櫝還珠一樣本末倒置。'},
+    {q:'下列哪個成語與「買櫝還珠」意思最接近？',
+     opts:['畫龍點睛','捨本逐末','錦上添花','買一送一'], a:1,
+     ex:'「買櫝還珠」比喻取捨不當、重外表而輕實質，與「捨本逐末」「本末倒置」意義相近。'},
+    {q:'韓非子是哪家學派思想的集大成者？',
+     opts:['儒家','道家','墨家','法家'], a:3,
+     ex:'韓非融合法、術、勢三派之說，集法家思想之大成，著有《韓非子》五十五篇。'}
+  ];
+  var LETTERS = ['甲','乙','丙','丁'];
+  var cur = 0, score = 0, answered = false;
+  var qNum = document.getElementById('qNum'), qBar = document.getElementById('qBar'),
+      qText = document.getElementById('qText'), qOpts = document.getElementById('qOpts'),
+      qExp = document.getElementById('qExp'), qNext = document.getElementById('qNext'),
+      quizBody = document.getElementById('quizBody'), quizResult = document.getElementById('quizResult');
+
+  function renderQ(){
+    answered = false;
+    var item = QS[cur];
+    qNum.textContent = '第 ' + (cur+1) + ' 題 / 共 ' + QS.length + ' 題';
+    qBar.style.width = ((cur+1)/QS.length*100) + '%';
+    qText.textContent = item.q;
+    qExp.classList.remove('show'); qExp.textContent = '';
+    qNext.classList.remove('show');
+    qNext.textContent = (cur === QS.length-1) ? '查看成績 ▸' : '下一題 ▸';
+    qOpts.innerHTML = '';
+    item.opts.forEach(function(op,i){
+      var b = document.createElement('button');
+      b.className = 'opt';
+      b.innerHTML = '<span class="letter">'+LETTERS[i]+'</span><span>'+op+'</span>';
+      b.addEventListener('click', function(){ choose(i,b); });
+      qOpts.appendChild(b);
+    });
+  }
+  function choose(i,btn){
+    if(answered) return;
+    answered = true;
+    var item = QS[cur], all = qOpts.querySelectorAll('.opt');
+    all.forEach(function(b){ b.disabled = true; });
+    if(i === item.a){ btn.classList.add('right'); score++; }
+    else{ btn.classList.add('wrong'); all[item.a].classList.add('right'); }
+    qExp.innerHTML = '<b>解析：</b>' + item.ex;
+    qExp.classList.add('show');
+    qNext.classList.add('show');
+  }
+  qNext.addEventListener('click', function(){
+    if(cur < QS.length-1){ cur++; renderQ(); }
+    else{ showResult(); }
+  });
+  function rankOf(s){
+    if(s === QS.length) return ['通今博古','滿分！你已深得韓子筆意，可稱韓門高足。'];
+    if(s >= 5) return ['學有所成','成績斐然，再讀一遍賞析，便是韓門高足。'];
+    if(s >= 3) return ['初窺門徑','已有根基，回到注釋與語譯溫習一番吧。'];
+    return ['再接再厲','別灰心！重讀原文與語譯，再戰一回。'];
+  }
+  function showResult(){
+    quizBody.style.display = 'none';
+    quizResult.style.display = 'block';
+    var r = rankOf(score);
+    quizResult.innerHTML =
+      '<div class="stamp">'+r[0]+'</div>' +
+      '<div class="score"><b>'+score+'</b> / '+QS.length+' 題答對</div>' +
+      '<p>'+r[1]+'</p>' +
+      '<button class="btn solid" id="qRestart">再挑戰一次 ↻</button>';
+    document.getElementById('qRestart').addEventListener('click', function(){
+      cur = 0; score = 0;
+      quizResult.style.display = 'none';
+      quizBody.style.display = 'block';
+      renderQ();
+    });
+  }
+  renderQ();
+})();
+</script>
+</body>
+</html>
